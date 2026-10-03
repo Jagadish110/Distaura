@@ -1,21 +1,13 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 
-const variants = {
-  solid: "bg-paper text-ink hover:bg-brass-hi border-transparent",
-  line: "border-brass text-brass-hi hover:bg-brass/10 bg-transparent",
-} as const;
-
-const sizes = {
-  lg: "h-13 px-8 text-base md:text-lg font-medium",
-  md: "h-12 px-7 text-base",
-  sm: "h-11 px-5 text-sm",
-} as const;
+type Variant = "solid" | "alt" | "line";
+type Size = "lg" | "md" | "sm";
 
 type ButtonLinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
   href: string;
-  variant?: keyof typeof variants;
-  size?: keyof typeof sizes;
+  variant?: Variant;
+  size?: Size;
 };
 
 export function ButtonLink({
@@ -30,11 +22,10 @@ export function ButtonLink({
     <a
       href={href}
       className={cn(
-        "inline-flex items-center justify-center gap-2 rounded-full border font-medium",
-        "transition-[transform,background-color,box-shadow] duration-150 ease-out",
-        "active:scale-[0.96]",
-        variants[variant],
-        sizes[size],
+        "btn",
+        (variant === "alt" || variant === "line") && "alt",
+        size === "sm" && "sm",
+        size === "lg" && "!px-8 !py-4 text-lg",
         className,
       )}
       {...props}
@@ -45,8 +36,8 @@ export function ButtonLink({
 }
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: keyof typeof variants;
-  size?: keyof typeof sizes;
+  variant?: Variant;
+  size?: Size;
 };
 
 export function Button({
@@ -60,11 +51,10 @@ export function Button({
     <button
       type={type}
       className={cn(
-        "inline-flex items-center justify-center gap-2 rounded-full border font-medium",
-        "transition-[transform,background-color] duration-150 ease-out",
-        "active:not-disabled:scale-[0.96] disabled:opacity-50",
-        variants[variant],
-        sizes[size],
+        "btn",
+        (variant === "alt" || variant === "line") && "alt",
+        size === "sm" && "sm",
+        size === "lg" && "!px-8 !py-4 text-lg",
         className,
       )}
       {...props}

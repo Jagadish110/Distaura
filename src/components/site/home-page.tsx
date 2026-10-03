@@ -24,15 +24,15 @@ const businessPoints = [
 
 const steps = [
   {
-    title: "1. Diagnose & match",
+    title: "Diagnose & match",
     copy: "We consult with you to understand your specific challenges and match you with vetted products or specialized services.",
   },
   {
-    title: "2. Transparent terms",
+    title: "Transparent terms",
     copy: "We agree distributor pricing with the supplier and handle localized rupee procurement with zero hassle.",
   },
   {
-    title: "3. Direct delivery",
+    title: "Direct delivery",
     copy: "The supplier fulfils the product or service directly, while Distaura stays by your side throughout onboarding.",
   },
 ];
@@ -73,276 +73,327 @@ function CityMarquee() {
 
 export function HomePage() {
   return (
-    <div className="relative min-h-dvh overflow-x-hidden bg-canvas pb-24 text-paper">
+    <div className="relative min-h-dvh overflow-x-hidden bg-[var(--bg)] pb-24 text-[var(--text)]">
       <ScrollProgress />
       <div className="grain" aria-hidden="true" />
       <a className="skip" href="#main">
         Skip to content
       </a>
 
+      {/* ── Hero Section ────────────────────────────────────────── */}
       <div className="relative min-h-dvh" id="top">
         <img
           src="/hero-india.jpg"
           alt=""
           width={1792}
           height={1008}
-          className="pointer-events-none absolute inset-0 size-full object-cover object-[70%_center]"
+          className="pointer-events-none absolute inset-0 size-full object-cover object-[70%_center] opacity-80"
           fetchPriority="high"
         />
-        <div className="pointer-events-none absolute inset-0 bg-linear-to-r from-canvas via-canvas/78 to-canvas/10" />
-        <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-canvas via-transparent to-canvas/45" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#1a1b19] via-[#1a1b19]/85 to-[#1a1b19]/25" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#1a1b19] via-transparent to-[#1a1b19]/50" />
+
         <div className="relative z-10 flex min-h-dvh flex-col">
           <NavBar />
-          <div className="flex flex-1 flex-col justify-center pt-20 pb-8 md:pt-24 md:pb-12">
+
+          <div className="flex flex-1 flex-col justify-center pt-24 pb-12 md:pt-28 md:pb-16">
             <div className="wrap max-w-5xl lg:max-w-6xl">
               <p className="folio">Products & Services / India</p>
-              <h1 className="font-display mt-4 text-display text-paper">
+
+              <h1 className="mt-4 font-display text-[clamp(2.4rem,6vw,4.5rem)] font-semibold leading-[1.08] tracking-[-0.03em] text-[var(--text)]">
                 We are the distribution partner for products and services.
               </h1>
-              <p className="mt-5 max-w-3xl text-base md:text-lg text-stone leading-relaxed">
-                Every business faces distinct operational challenges. We partner directly with you to understand your workflow, diagnose bottlenecks, and connect you with curated products and specialized services—with rupee billing, zero procurement friction, and dedicated onboarding support.
+
+              <p className="mt-6 max-w-2xl font-sans text-lg leading-relaxed text-[var(--muted)] md:text-xl">
+                Distaura connects software and product suppliers with Indian businesses.
+                We handle customer acquisition and localized sales, the supplier delivers,
+                and the business gets a solution that fits.
               </p>
-              <div className="mt-7 flex flex-wrap gap-4">
-                <ButtonLink href="#businesses" size="md">
-                  Find solutions for your business
-                </ButtonLink>
-                <ButtonLink href="#suppliers" variant="line" size="md">
+
+              <div className="mt-10 flex flex-wrap items-center gap-4">
+                <ButtonLink href="#suppliers">
                   Partner with us
                 </ButtonLink>
+                <ButtonLink href="#businesses" variant="alt">
+                  Find a solution
+                </ButtonLink>
               </div>
+
+              <p className="mt-12 max-w-xl text-sm text-[var(--muted)]">
+                No warehouses and no inventory. Solutions are sold and delivered remotely,
+                so our focus stays entirely on reaching the right buyers.
+              </p>
             </div>
           </div>
         </div>
       </div>
 
-      <CityMarquee />
-
       <main id="main">
-        <section id="route" className="border-t border-hairline py-20 md:py-28">
+        {/* ── Marquee Section ─────────────────────────────────────── */}
+        <CityMarquee />
+
+        {/* ── Exchange Board Section ──────────────────────────────── */}
+        <section id="route" className="border-t border-white/5 py-20 md:py-28">
           <div className="wrap">
             <Reveal>
-              <p className="folio">01 / The route</p>
-              <h2 className="font-display mt-4 max-w-2xl text-headline">
-                The idea in motion.
+              <p className="folio">02 / Exchange</p>
+              <h2 className="mt-4 text-headline">
+                How Distaura works
               </h2>
-              <p className="intro mt-5 max-w-2xl text-stone">
-                Products and services move from supplier to business through Distaura.
-                Payment moves back. Clean, transparent distribution built for India.
+              <p className="mt-3 max-w-2xl text-[var(--muted)]">
+                A clean, transparent bridge aligning supplier products with business demand
+                across India.
               </p>
             </Reveal>
-            <Reveal className="mt-12 rounded-lg border border-hairline bg-panel p-5 md:p-8">
+
+            <Reveal className="mt-12">
               <ExchangeBoard />
             </Reveal>
           </div>
         </section>
 
-        <section className="relative min-h-[70vh] overflow-hidden border-t border-hairline">
-          <img
-            src="/house.jpg"
-            alt=""
-            width={1792}
-            height={1008}
-            className="absolute inset-0 size-full object-cover"
-            loading="lazy"
-          />
-          <div className="absolute inset-0 bg-linear-to-t from-canvas via-canvas/55 to-canvas/20" />
-          <div className="relative flex min-h-[70vh] items-end py-16 md:py-24">
-            <Reveal className="wrap max-w-4xl">
-              <p className="folio">02 / The house</p>
-              <h2 className="font-display mt-5 text-headline italic text-paper">
-                We do the distribution and selling, so suppliers can focus on what they build best.
-              </h2>
-              <p className="mt-6 max-w-2xl text-stone">
-                Distaura partners with product creators, specialized service providers, SaaS companies, and B2B solution makers. We agree on distributor terms with each partner, then bring their solutions directly to Indian businesses seeking tailored tools. The supplier keeps full control over fulfillment, quality, and support.
-              </p>
-            </Reveal>
-          </div>
-        </section>
-
+        {/* ── Two Sides Section ───────────────────────────────────── */}
         <section
           id="suppliers"
-          className="border-t border-hairline py-20 md:py-28"
+          className="border-t border-white/5 py-20 md:py-28"
         >
           <div className="wrap">
             <Reveal>
               <p className="folio">03 / Two sides</p>
-              <h2 className="font-display mt-4 max-w-2xl text-headline">
+              <h2 className="mt-4 max-w-2xl text-headline">
                 Two sides, one clear route to market.
               </h2>
+              <p className="mt-3 max-w-2xl text-[var(--muted)]">
+                We agree distributor terms with each supplier and sell their solutions to businesses
+                across India. The supplier keeps control of delivery and support.
+              </p>
             </Reveal>
 
             <div
               id="businesses"
-              className="mt-12 grid overflow-hidden rounded-lg border border-hairline bg-panel lg:grid-cols-2"
+              className="mt-12 grid gap-8 lg:grid-cols-2"
             >
-              <Reveal className="p-8 md:p-12">
-                <h3 className="font-display text-3xl text-brass-hi">
-                  For product & service suppliers
-                </h3>
-                <p className="mt-3 text-stone">
-                  Reach more Indian businesses through our sales and
-                  distribution network, without building a local team first.
-                </p>
-                <ul className="split-list">
-                  {supplierPoints.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-                <ButtonLink href={`mailto:${site.emails.partners}?subject=Supplier%20partnership%20enquiry`}>
-                  Become a supplier partner
-                  <ArrowUpRight className="size-4" />
-                </ButtonLink>
+              <Reveal className="card flex flex-col justify-between">
+                <div>
+                  <h3 className="font-display text-2xl md:text-3xl text-[var(--lime-hi)]">
+                    For software suppliers
+                  </h3>
+                  <p className="mt-3 text-[var(--muted)]">
+                    Reach more Indian businesses through our sales and distribution network,
+                    without building an expensive local team first.
+                  </p>
+                  <ul className="split-list">
+                    {supplierPoints.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="pt-2">
+                  <ButtonLink
+                    href={`mailto:${site.emails.partners}?subject=${encodeURIComponent("Supplier partnership enquiry")}`}
+                  >
+                    Become a partner
+                    <ArrowUpRight className="size-4" />
+                  </ButtonLink>
+                </div>
               </Reveal>
-              <Reveal className="border-t border-hairline p-8 md:p-12 lg:border-t-0 lg:border-l">
-                <h3 className="font-display text-3xl text-brass-hi">
-                  For businesses
-                </h3>
-                <p className="mt-3 text-stone">
-                  Discover and procure tailored products, tools, and services
-                  matched to your exact operational challenges.
-                </p>
-                <ul className="split-list">
-                  {businessPoints.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-                <ButtonLink
-                  href={`mailto:${site.emails.hello}?subject=Business%20enquiry`}
-                  variant="line"
-                >
-                  Tell us what you need
-                  <ArrowUpRight className="size-4" />
-                </ButtonLink>
+
+              <Reveal className="card flex flex-col justify-between">
+                <div>
+                  <h3 className="font-display text-2xl md:text-3xl text-[var(--lime-hi)]">
+                    For businesses
+                  </h3>
+                  <p className="mt-3 text-[var(--muted)]">
+                    Discover and procure tailored products, tools, and services
+                    matched to your exact operational challenges.
+                  </p>
+                  <ul className="split-list">
+                    {businessPoints.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="pt-2">
+                  <ButtonLink
+                    href={`mailto:${site.emails.hello}?subject=${encodeURIComponent("Business enquiry")}`}
+                    variant="alt"
+                  >
+                    Tell us what you need
+                    <ArrowUpRight className="size-4" />
+                  </ButtonLink>
+                </div>
               </Reveal>
             </div>
           </div>
         </section>
 
-        <section id="how" className="border-t border-hairline py-20 md:py-28">
+        {/* ── How It Works Section ─────────────────────────────────── */}
+        <section id="how" className="border-t border-white/5 py-20 md:py-28">
           <div className="wrap">
             <Reveal>
               <p className="folio">04 / Method</p>
-              <h2 className="font-display mt-4 text-headline">How it works</h2>
+              <h2 className="mt-4 text-headline">How it works</h2>
             </Reveal>
-            <div className="mt-12 grid gap-0 md:grid-cols-3">
+
+            <div className="mt-12 grid gap-6 md:grid-cols-3">
               {steps.map((step, index) => (
-                <Reveal
-                  key={step.title}
-                  className="border-hairline py-8 md:border-l md:px-10 md:py-0 md:first:border-l-0 md:first:pl-0 max-md:border-t max-md:first:border-t-0 max-md:first:pt-0"
-                >
-                  <span className="block font-display text-6xl leading-none text-brass">
-                    0{index + 1}
-                  </span>
-                  <h3 className="font-display mt-6 text-2xl">{step.title}</h3>
-                  <p className="mt-3 text-stone">{step.copy}</p>
+                <Reveal key={step.title} className="card">
+                  <div className="num">{index + 1}</div>
+                  <h3 className="mt-4 font-display text-xl font-semibold text-[var(--lime-hi)]">
+                    {step.title}
+                  </h3>
+                  <p className="mt-3 text-[var(--muted)]">{step.copy}</p>
                 </Reveal>
               ))}
             </div>
           </div>
         </section>
 
+        {/* ── Stance / Principles Section ──────────────────────────── */}
         <section
           id="why"
-          className="relative overflow-hidden border-t border-hairline"
+          className="relative overflow-hidden border-t border-white/5 py-20 md:py-28"
         >
           <img
             src="/skyline.jpg"
             alt=""
             width={1728}
             height={1152}
-            className="absolute inset-0 size-full object-cover opacity-35"
+            className="pointer-events-none absolute inset-0 size-full object-cover opacity-25"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-linear-to-b from-canvas via-canvas/80 to-canvas" />
-          <div className="relative py-20 md:py-28">
-            <div className="wrap">
-              <Reveal>
-                <p className="folio">05 / Stance</p>
-                <h2 className="font-display mt-4 max-w-2xl text-headline">
-                  Built to be a serious distribution partner.
-                </h2>
-              </Reveal>
-              <div className="mt-12 grid md:grid-cols-2">
-                {principles.map((item) => (
-                  <Reveal
-                    key={item.title}
-                    className="border-t border-hairline py-8 md:pr-12 md:even:pl-12 md:even:pr-0"
-                  >
-                    <h3 className="font-display text-2xl">{item.title}</h3>
-                    <p className="mt-2 text-stone">{item.copy}</p>
-                  </Reveal>
-                ))}
-              </div>
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#1a1b19] via-[#1a1b19]/80 to-[#1a1b19]" />
+
+          <div className="relative wrap">
+            <Reveal>
+              <p className="folio">05 / Stance</p>
+              <h2 className="mt-4 max-w-2xl text-headline">
+                Built to be a serious distribution partner.
+              </h2>
+            </Reveal>
+
+            <div className="mt-12 grid gap-6 md:grid-cols-2">
+              {principles.map((item) => (
+                <Reveal key={item.title} className="card">
+                  <h3 className="font-display text-xl font-semibold text-[var(--lime-hi)]">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-[var(--muted)]">{item.copy}</p>
+                </Reveal>
+              ))}
             </div>
           </div>
         </section>
 
+        {/* ── Contact Desk Section ─────────────────────────────────── */}
         <section
           id="contact"
-          className="relative overflow-hidden border-t border-hairline bg-panel py-20 md:py-28"
+          className="relative overflow-hidden border-t border-white/5 py-20 md:py-28"
         >
           <img
             src="/jali.jpg"
             alt=""
             width={1792}
             height={1008}
-            className="pointer-events-none absolute inset-y-0 right-0 hidden h-full w-1/2 object-cover opacity-30 lg:block"
+            className="pointer-events-none absolute inset-y-0 right-0 hidden h-full w-1/2 object-cover opacity-25 lg:block"
             loading="lazy"
           />
-          <div className="pointer-events-none absolute inset-0 bg-linear-to-r from-panel via-panel to-panel/40" />
-          <div className="relative wrap grid gap-14 lg:grid-cols-[1.15fr_0.85fr]">
-            <Reveal>
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#1a1b19] via-[#1a1b19] to-[#1a1b19]/40" />
+
+          <div className="relative wrap grid gap-12 lg:grid-cols-[1.2fr_0.8fr]">
+            <Reveal className="card">
               <p className="folio">06 / The desk</p>
-              <h2 className="font-display mt-4 text-headline">Let's talk.</h2>
-              <p className="mt-5 max-w-xl text-stone">
-                Whether you offer products and services or need them tailored for your business, tell us
-                a little about what you have in mind and we will get back to
-                you.
+              <h2 className="mt-4 text-headline">Let&apos;s talk.</h2>
+              <p className="mt-4 max-w-xl text-[var(--muted)]">
+                Whether you build software and services or need them tailored for your business in
+                India, tell us what you have in mind and we will get back to you promptly.
               </p>
               <div className="mt-8">
                 <ContactDesk />
               </div>
             </Reveal>
-            <Reveal className="grid content-start gap-8">
+
+            <Reveal className="card flex flex-col justify-between">
               <div>
-                <p className="text-sm text-stone">Suppliers</p>
-                <a
-                  className="mt-1 inline-block border-b border-brass-lo text-lg text-brass-hi no-underline"
-                  href={`mailto:${site.emails.partners}`}
-                >
-                  {site.emails.partners}
-                </a>
+                <h3 className="font-display text-2xl font-semibold text-[var(--lime-hi)]">
+                  Direct channels
+                </h3>
+                <p className="mt-2 text-sm text-[var(--muted)]">
+                  Reach our distribution desks directly for immediate inquiries.
+                </p>
+
+                <div className="mt-8 space-y-6">
+                  <div>
+                    <span className="block text-xs uppercase tracking-wider text-[var(--muted)]">
+                      Suppliers
+                    </span>
+                    <a
+                      className="mt-1 inline-block text-lg font-semibold text-[var(--lime-hi)] transition-colors hover:text-white"
+                      href={`mailto:${site.emails.partners}`}
+                    >
+                      {site.emails.partners}
+                    </a>
+                  </div>
+
+                  <div>
+                    <span className="block text-xs uppercase tracking-wider text-[var(--muted)]">
+                      Businesses
+                    </span>
+                    <a
+                      className="mt-1 inline-block text-lg font-semibold text-[var(--lime-hi)] transition-colors hover:text-white"
+                      href={`mailto:${site.emails.hello}`}
+                    >
+                      {site.emails.hello}
+                    </a>
+                  </div>
+
+                  <div>
+                    <span className="block text-xs uppercase tracking-wider text-[var(--muted)]">
+                      Phone
+                    </span>
+                    <a
+                      className="mt-1 inline-block text-lg font-semibold text-[var(--lime-hi)] transition-colors hover:text-white"
+                      href={site.phoneHref}
+                    >
+                      {site.phone}
+                    </a>
+                  </div>
+
+                  <div>
+                    <span className="block text-xs uppercase tracking-wider text-[var(--muted)]">
+                      Headquarters
+                    </span>
+                    <p className="mt-1 text-lg font-semibold text-[var(--text)]">
+                      {site.basedIn}
+                    </p>
+                  </div>
+                </div>
               </div>
-              <div>
-                <p className="text-sm text-stone">Businesses</p>
-                <a
-                  className="mt-1 inline-block border-b border-brass-lo text-lg text-brass-hi no-underline"
-                  href={`mailto:${site.emails.hello}`}
-                >
-                  {site.emails.hello}
-                </a>
-              </div>
-              <div>
-                <p className="text-sm text-stone">Phone</p>
-                <a
-                  className="mt-1 inline-block border-b border-brass-lo text-lg text-brass-hi no-underline"
-                  href={site.phoneHref}
-                >
-                  {site.phone}
-                </a>
-              </div>
-              <div>
-                <p className="text-sm text-stone">Based in</p>
-                <p className="mt-1 text-lg">{site.basedIn}</p>
+
+              <div className="mt-8 rounded-2xl border border-white/5 bg-[#171815] p-5 shadow-[inset_2px_2px_6px_rgba(0,0,0,0.5)]">
+                <div className="flex items-center gap-3">
+                  <div className="size-3 rounded-full bg-[var(--lime)] shadow-[0_0_8px_var(--lime)]" />
+                  <span className="text-sm font-medium text-[var(--muted)]">
+                    Active partner onboarding across 12+ metro hubs
+                  </span>
+                </div>
               </div>
             </Reveal>
           </div>
         </section>
       </main>
 
-      <footer className="border-t border-hairline py-8 text-sm text-stone">
-        <div className="wrap flex flex-wrap items-center justify-between gap-3">
-          <span className="font-display text-lg text-paper">{site.name}</span>
+      {/* ── Footer ──────────────────────────────────────────────── */}
+      <footer className="border-t border-white/5 py-8 text-sm text-[var(--muted)]">
+        <div className="wrap flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <img
+              src="/logo-badge.png"
+              alt="Distaura"
+              className="size-9 rounded-full object-contain drop-shadow-[0_0_10px_rgba(184,224,44,0.4)]"
+            />
+            <span className="logo !text-xl font-bold">{site.name}</span>
+          </div>
           <span>{site.tagline}</span>
         </div>
       </footer>
@@ -352,9 +403,10 @@ export function HomePage() {
         position="top-center"
         toastOptions={{
           style: {
-            background: "var(--panel)",
-            color: "var(--paper)",
-            border: "1px solid var(--hairline)",
+            background: "var(--card)",
+            color: "var(--text)",
+            border: "1px solid rgba(255,255,255,0.08)",
+            boxShadow: "var(--raise)",
           },
         }}
       />
