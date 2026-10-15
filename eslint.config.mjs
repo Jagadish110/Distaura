@@ -10,6 +10,9 @@ export default tseslint.config(
   {
     ignores: [
       "dist/**",
+      ".next/**",
+      "_backup/**",
+      "next-env.d.ts",
       ".output/**",
       ".vercel/**",
       ".nitro/**",

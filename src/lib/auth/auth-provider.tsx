@@ -42,7 +42,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setState({ user: null, session: null, profile: null, role: null, loading: false });
       try {
         localStorage.removeItem(AUTH_CACHE_KEY);
-      } catch {}
+      } catch { /* storage unavailable */ }
       return;
     }
 
@@ -70,7 +70,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       try {
         localStorage.setItem(AUTH_CACHE_KEY, JSON.stringify({ user, profile, role }));
-      } catch {}
+      } catch { /* storage unavailable */ }
     } finally {
       loadingUserIdRef.current = null;
     }
@@ -92,7 +92,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           );
         }
       }
-    } catch {}
+    } catch { /* storage unavailable */ }
   }, []); // run once after mount
 
   useEffect(() => {
@@ -116,7 +116,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const signOut = useCallback(async () => {
     try {
       localStorage.removeItem(AUTH_CACHE_KEY);
-    } catch {}
+    } catch { /* storage unavailable */ }
     await supabase.auth.signOut();
     setState({ user: null, session: null, profile: null, role: null, loading: false });
   }, [supabase]);

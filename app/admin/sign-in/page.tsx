@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import Link from 'next/link';
 import { AdminSignInForm } from '@/components/admin/admin-sign-in-form';
 import { Mark } from '@/components/site/mark';
@@ -125,7 +126,7 @@ export default function AdminSignInPage() {
                   </p>
                 </div>
 
-                <AdminSignInForm />
+                <Suspense fallback={null}><AdminSignInForm /></Suspense>
 
                 <div className="mt-8 border-t border-white/5 pt-5 text-center text-xs text-stone-500">
                   Lost operator credentials? Contact the <Link href="/contact" className="text-stone-400 hover:text-stone-200 underline">security administrator</Link>.
