@@ -3,7 +3,11 @@ node_modules
 .tanstack
 .node_modules.lock
 dist
+.next
+_backup
+*.tsbuildinfo
 .env
 .env.*
+!.env.example
 screenshots
 *.log

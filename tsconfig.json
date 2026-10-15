@@ -1,21 +1,51 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "jsx": "react-jsx",
-    "strict": true,
-    "isolatedModules": true,
+    "target": "ES2017",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
     "skipLibCheck": true,
-    "allowJs": false,
+    "strict": true,
     "noEmit": true,
-    "types": ["vite/client"],
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
-    },
-    "allowImportingTsExtensions": true
+      "@/*": [
+        "./src/*"
+      ]
+    }
   },
-  "include": ["src"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "_backup",
+    "server",
+    "src/lib/app-data",
+    "src/lib/multiplayer",
+    "src/lib/auth/client.ts",
+    "src/lib/auth/gate-identity.server.ts",
+    "src/lib/auth/gate-identity.test.ts",
+    "src/lib/auth/sign-in-gate.test.ts",
+    "src/lib/db.ts"
+  ]
 }

@@ -1,12 +1,11 @@
-import { ArrowUpRight } from "lucide-react";
-import { Toaster } from "sonner";
+import { ArrowUpRight, ArrowRight, CheckCircle2, TrendingUp, Zap, Globe2, Shield } from "lucide-react";
 import { ButtonLink } from "@/components/site/button";
 import { ContactDesk } from "@/components/site/contact-desk";
 import { ExchangeBoard } from "@/components/site/exchange-board";
-import { NavBar } from "@/components/site/nav-bar";
 import { Reveal } from "@/components/site/reveal";
 import { ScrollProgress } from "@/components/site/scroll-progress";
 import { site } from "@/lib/site";
+import Link from "next/link";
 
 const supplierPoints = [
   "Direct access to Indian businesses actively seeking solutions",
@@ -24,37 +23,51 @@ const businessPoints = [
 
 const steps = [
   {
+    number: "01",
     title: "Diagnose & match",
     copy: "We consult with you to understand your specific challenges and match you with vetted products or specialized services.",
+    color: "from-[var(--lime)]/20 to-emerald-500/5",
+    highlight: "var(--lime)",
   },
   {
+    number: "02",
     title: "Transparent terms",
     copy: "We agree distributor pricing with the supplier and handle localized rupee procurement with zero hassle.",
+    color: "from-emerald-400/20 to-teal-500/5",
+    highlight: "rgb(52 211 153)",
   },
   {
+    number: "03",
     title: "Direct delivery",
     copy: "The supplier fulfils the product or service directly, while Distaura stays by your side throughout onboarding.",
+    color: "from-teal-400/20 to-cyan-500/5",
+    highlight: "rgb(45 212 191)",
   },
 ];
 
 const principles = [
   {
+    icon: TrendingUp,
     title: "Distribution first",
     copy: "We are not an open catalog or passive affiliate site. Selling and matching the right solution is our core job.",
   },
   {
+    icon: Zap,
     title: "Asset light",
     copy: "No heavy inventory or warehouses, so our full focus goes into serving customers and supplier partners.",
   },
   {
+    icon: Shield,
     title: "Curated portfolio",
     copy: "We work with a focused set of vetted products and services we can properly stand behind.",
   },
   {
+    icon: Globe2,
     title: "Clear agreements",
     copy: "Pricing, support, and responsibilities are clearly defined with every partner.",
   },
 ];
+
 
 function CityMarquee() {
   const loop = [...site.cities, ...site.cities];
@@ -71,75 +84,73 @@ function CityMarquee() {
   );
 }
 
+// Server Component
 export function HomePage() {
   return (
-    <div className="relative min-h-dvh overflow-x-hidden bg-[var(--bg)] pb-24 text-[var(--text)]">
+    <>
       <ScrollProgress />
-      <div className="grain" aria-hidden="true" />
-      <a className="skip" href="#main">
-        Skip to content
-      </a>
 
       {/* ── Hero Section ────────────────────────────────────────── */}
-      <div className="relative min-h-dvh" id="top">
+      <div className="relative min-h-dvh overflow-hidden" id="top">
         <img
           src="/hero-india.jpg"
           alt=""
           width={1792}
           height={1008}
-          className="pointer-events-none absolute inset-0 size-full object-cover object-[70%_center] opacity-80"
+          className="pointer-events-none absolute inset-0 size-full object-cover object-[70%_center]"
           fetchPriority="high"
         />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#1a1b19] via-[#1a1b19]/85 to-[#1a1b19]/25" />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#1a1b19] via-transparent to-[#1a1b19]/50" />
+        {/* Rich layered overlay */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#1a1b19] via-[#1a1b19]/90 to-[#1a1b19]/30" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#1a1b19] via-transparent to-[#1a1b19]/60" />
+        {/* Lime ambient glow */}
+        <div className="pointer-events-none absolute -bottom-40 -left-40 size-[700px] rounded-full bg-[var(--lime)]/8 blur-[160px]" />
 
         <div className="relative z-10 flex min-h-dvh flex-col">
-          <NavBar />
-
-          <div className="flex flex-1 flex-col justify-center pt-24 pb-12 md:pt-28 md:pb-16">
+          <div className="flex flex-1 flex-col justify-center pt-28 pb-16 md:pt-32 md:pb-20">
             <div className="wrap max-w-5xl lg:max-w-6xl">
-              <p className="folio">Products & Services / India</p>
+              {/* Pill badge */}
+              <div className="inline-flex items-center gap-2 rounded-full border border-[var(--lime)]/30 bg-[var(--lime)]/10 px-4 py-1.5 text-xs font-semibold text-[var(--lime-hi)] backdrop-blur-sm mb-6">
+                <span className="size-1.5 rounded-full bg-[var(--lime)] animate-pulse" />
+                B2B Software Distribution · India
+              </div>
 
-              <h1 className="mt-4 font-display text-[clamp(2.4rem,6vw,4.5rem)] font-semibold leading-[1.08] tracking-[-0.03em] text-[var(--text)]">
-                We are the distribution partner for products and services.
+              <h1 className="font-display text-[clamp(2.6rem,6.5vw,5rem)] font-bold leading-[1.06] tracking-[-0.03em] text-[var(--text)]">
+                Your distribution partner<br />
+                <span className="text-[var(--lime-hi)]">for India's enterprise market.</span>
               </h1>
 
               <p className="mt-6 max-w-2xl font-sans text-lg leading-relaxed text-[var(--muted)] md:text-xl">
                 Distaura connects software and product suppliers with Indian businesses.
-                We handle customer acquisition and localized sales, the supplier delivers,
+                We handle customer acquisition and localized sales — the supplier delivers,
                 and the business gets a solution that fits.
               </p>
 
               <div className="mt-10 flex flex-wrap items-center gap-4">
                 <ButtonLink href="#suppliers">
-                  Partner with us
+                  Become a partner
+                  <ArrowUpRight className="size-4" />
                 </ButtonLink>
-                <ButtonLink href="#businesses" variant="alt">
-                  Find a solution
+                <ButtonLink href="/products" variant="alt">
+                  Browse catalogue
+                  <ArrowRight className="size-4" />
                 </ButtonLink>
               </div>
-
-              <p className="mt-12 max-w-xl text-sm text-[var(--muted)]">
-                No warehouses and no inventory. Solutions are sold and delivered remotely,
-                so our focus stays entirely on reaching the right buyers.
-              </p>
             </div>
           </div>
         </div>
       </div>
 
       <main id="main">
-        {/* ── Marquee Section ─────────────────────────────────────── */}
+        {/* ── City Marquee ─────────────────────────────────────── */}
         <CityMarquee />
 
-        {/* ── Exchange Board Section ──────────────────────────────── */}
+        {/* ── Exchange Board ──────────────────────────────────── */}
         <section id="route" className="border-t border-white/5 py-20 md:py-28">
           <div className="wrap">
             <Reveal>
               <p className="folio">02 / Exchange</p>
-              <h2 className="mt-4 text-headline">
-                How Distaura works
-              </h2>
+              <h2 className="mt-4 text-headline">How Distaura works</h2>
               <p className="mt-3 max-w-2xl text-[var(--muted)]">
                 A clean, transparent bridge aligning supplier products with business demand
                 across India.
@@ -152,11 +163,8 @@ export function HomePage() {
           </div>
         </section>
 
-        {/* ── Two Sides Section ───────────────────────────────────── */}
-        <section
-          id="suppliers"
-          className="border-t border-white/5 py-20 md:py-28"
-        >
+        {/* ── Two Sides ───────────────────────────────────────── */}
+        <section id="suppliers" className="border-t border-white/5 py-20 md:py-28">
           <div className="wrap">
             <Reveal>
               <p className="folio">03 / Two sides</p>
@@ -169,26 +177,30 @@ export function HomePage() {
               </p>
             </Reveal>
 
-            <div
-              id="businesses"
-              className="mt-12 grid gap-8 lg:grid-cols-2"
-            >
-              <Reveal className="card flex flex-col justify-between">
+            <div id="businesses" className="mt-12 grid gap-6 lg:grid-cols-2">
+              <Reveal className="card flex flex-col justify-between group hover:border-[var(--lime)]/30 transition-colors duration-300">
                 <div>
-                  <h3 className="font-display text-2xl md:text-3xl text-[var(--lime-hi)]">
+                  <div className="mb-4 inline-flex items-center gap-2 rounded-xl border border-[var(--lime)]/20 bg-[var(--lime)]/10 px-3 py-1.5 text-xs font-semibold text-[var(--lime-hi)]">
+                    <Shield className="size-3.5" />
                     For software suppliers
+                  </div>
+                  <h3 className="font-display text-2xl md:text-3xl text-[var(--lime-hi)]">
+                    Reach Indian businesses at scale
                   </h3>
                   <p className="mt-3 text-[var(--muted)]">
                     Reach more Indian businesses through our sales and distribution network,
                     without building an expensive local team first.
                   </p>
-                  <ul className="split-list">
+                  <ul className="split-list mt-4">
                     {supplierPoints.map((item) => (
-                      <li key={item}>{item}</li>
+                      <li key={item} className="flex items-start gap-2">
+                        <CheckCircle2 className="size-3.5 shrink-0 text-[var(--lime)] mt-0.5" />
+                        {item}
+                      </li>
                     ))}
                   </ul>
                 </div>
-                <div className="pt-2">
+                <div className="pt-4">
                   <ButtonLink
                     href={`mailto:${site.emails.partners}?subject=${encodeURIComponent("Supplier partnership enquiry")}`}
                   >
@@ -198,22 +210,29 @@ export function HomePage() {
                 </div>
               </Reveal>
 
-              <Reveal className="card flex flex-col justify-between">
+              <Reveal className="card flex flex-col justify-between group hover:border-white/15 transition-colors duration-300">
                 <div>
-                  <h3 className="font-display text-2xl md:text-3xl text-[var(--lime-hi)]">
+                  <div className="mb-4 inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-semibold text-stone-300">
+                    <Globe2 className="size-3.5" />
                     For businesses
+                  </div>
+                  <h3 className="font-display text-2xl md:text-3xl text-[var(--lime-hi)]">
+                    Discover & procure with confidence
                   </h3>
                   <p className="mt-3 text-[var(--muted)]">
                     Discover and procure tailored products, tools, and services
                     matched to your exact operational challenges.
                   </p>
-                  <ul className="split-list">
+                  <ul className="split-list mt-4">
                     {businessPoints.map((item) => (
-                      <li key={item}>{item}</li>
+                      <li key={item} className="flex items-start gap-2">
+                        <CheckCircle2 className="size-3.5 shrink-0 text-[var(--lime)] mt-0.5" />
+                        {item}
+                      </li>
                     ))}
                   </ul>
                 </div>
-                <div className="pt-2">
+                <div className="pt-4">
                   <ButtonLink
                     href={`mailto:${site.emails.hello}?subject=${encodeURIComponent("Business enquiry")}`}
                     variant="alt"
@@ -227,29 +246,79 @@ export function HomePage() {
           </div>
         </section>
 
-        {/* ── How It Works Section ─────────────────────────────────── */}
+        {/* ── Featured Products CTA ──────────────────────────── */}
+        <section className="border-t border-white/5 py-16 md:py-20 bg-gradient-to-b from-transparent to-[#161815]/60">
+          <div className="wrap">
+            <Reveal>
+              <div className="rounded-3xl border border-[var(--lime)]/20 bg-gradient-to-br from-[#1e2218] via-[#1a1b19] to-[#1a1b19] p-8 sm:p-12 relative overflow-hidden">
+                <div className="pointer-events-none absolute -right-20 -top-20 size-64 rounded-full bg-[var(--lime)]/10 blur-3xl" />
+                <div className="relative max-w-2xl">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-[var(--lime)]/30 bg-[var(--lime)]/10 px-3 py-1 text-xs font-semibold text-[var(--lime-hi)] mb-5">
+                    <Zap className="size-3" />
+                    Live Catalogue
+                  </div>
+                  <h2 className="font-display text-3xl sm:text-4xl font-bold text-stone-100">
+                    Browse verified enterprise software — priced in INR.
+                  </h2>
+                  <p className="mt-4 text-[var(--muted)] text-sm leading-relaxed">
+                    GST-compliant accounting, cloud ERPs, CRMs, security tooling, and more.
+                    Every listing comes with transparent pricing and dedicated Indian deployment support.
+                  </p>
+                  <div className="mt-7 flex flex-wrap gap-3">
+                    <Link
+                      href="/products"
+                      className="inline-flex items-center gap-2 rounded-xl bg-[var(--lime)] px-5 py-3 text-sm font-bold text-stone-950 transition-all hover:bg-[var(--lime-hi)] hover:shadow-[0_0_25px_rgba(184,224,44,0.35)]"
+                    >
+                      Browse Catalogue <ArrowRight className="size-4" />
+                    </Link>
+                    <Link
+                      href="/find-a-solution"
+                      className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium text-stone-200 hover:bg-white/10"
+                    >
+                      Request custom solution
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* ── How It Works ──────────────────────────────────── */}
         <section id="how" className="border-t border-white/5 py-20 md:py-28">
           <div className="wrap">
             <Reveal>
               <p className="folio">04 / Method</p>
               <h2 className="mt-4 text-headline">How it works</h2>
+              <p className="mt-3 max-w-xl text-[var(--muted)]">
+                A straightforward three-step process gets you from need to solution.
+              </p>
             </Reveal>
 
             <div className="mt-12 grid gap-6 md:grid-cols-3">
-              {steps.map((step, index) => (
-                <Reveal key={step.title} className="card">
-                  <div className="num">{index + 1}</div>
-                  <h3 className="mt-4 font-display text-xl font-semibold text-[var(--lime-hi)]">
-                    {step.title}
-                  </h3>
-                  <p className="mt-3 text-[var(--muted)]">{step.copy}</p>
+              {steps.map((step) => (
+                <Reveal key={step.title} className="relative">
+                  <div className={`card h-full bg-gradient-to-br ${step.color} border-white/10 hover:border-white/20 transition-colors`}>
+                    <div className="font-display text-5xl font-black text-white/5 leading-none mb-4">
+                      {step.number}
+                    </div>
+                    <h3
+                      className="font-display text-xl font-semibold"
+                      style={{ color: step.highlight }}
+                    >
+                      {step.title}
+                    </h3>
+                    <p className="mt-3 text-[var(--muted)] text-sm leading-relaxed">
+                      {step.copy}
+                    </p>
+                  </div>
                 </Reveal>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ── Stance / Principles Section ──────────────────────────── */}
+        {/* ── Principles / Stance ──────────────────────────── */}
         <section
           id="why"
           className="relative overflow-hidden border-t border-white/5 py-20 md:py-28"
@@ -259,7 +328,7 @@ export function HomePage() {
             alt=""
             width={1728}
             height={1152}
-            className="pointer-events-none absolute inset-0 size-full object-cover opacity-25"
+            className="pointer-events-none absolute inset-0 size-full object-cover opacity-20"
             loading="lazy"
           />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#1a1b19] via-[#1a1b19]/80 to-[#1a1b19]" />
@@ -272,20 +341,26 @@ export function HomePage() {
               </h2>
             </Reveal>
 
-            <div className="mt-12 grid gap-6 md:grid-cols-2">
-              {principles.map((item) => (
-                <Reveal key={item.title} className="card">
-                  <h3 className="font-display text-xl font-semibold text-[var(--lime-hi)]">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 text-[var(--muted)]">{item.copy}</p>
-                </Reveal>
-              ))}
+            <div className="mt-12 grid gap-5 md:grid-cols-2">
+              {principles.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <Reveal key={item.title} className="card group hover:border-[var(--lime)]/20 transition-colors">
+                    <div className="mb-4 inline-flex size-10 items-center justify-center rounded-xl bg-[var(--lime)]/10 text-[var(--lime)]">
+                      <Icon className="size-5" />
+                    </div>
+                    <h3 className="font-display text-xl font-semibold text-[var(--lime-hi)]">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 text-[var(--muted)]">{item.copy}</p>
+                  </Reveal>
+                );
+              })}
             </div>
           </div>
         </section>
 
-        {/* ── Contact Desk Section ─────────────────────────────────── */}
+        {/* ── Contact Desk ────────────────────────────────── */}
         <section
           id="contact"
           className="relative overflow-hidden border-t border-white/5 py-20 md:py-28"
@@ -295,7 +370,7 @@ export function HomePage() {
             alt=""
             width={1792}
             height={1008}
-            className="pointer-events-none absolute inset-y-0 right-0 hidden h-full w-1/2 object-cover opacity-25 lg:block"
+            className="pointer-events-none absolute inset-y-0 right-0 hidden h-full w-1/2 object-cover opacity-20 lg:block"
             loading="lazy"
           />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#1a1b19] via-[#1a1b19] to-[#1a1b19]/40" />
@@ -374,7 +449,7 @@ export function HomePage() {
                 <div className="flex items-center gap-3">
                   <div className="size-3 rounded-full bg-[var(--lime)] shadow-[0_0_8px_var(--lime)]" />
                   <span className="text-sm font-medium text-[var(--muted)]">
-                    Active partner onboarding across 12+ metro hubs
+                    Active partner onboarding across {site.cities.length}+ metro hubs
                   </span>
                 </div>
               </div>
@@ -382,34 +457,6 @@ export function HomePage() {
           </div>
         </section>
       </main>
-
-      {/* ── Footer ──────────────────────────────────────────────── */}
-      <footer className="border-t border-white/5 py-8 text-sm text-[var(--muted)]">
-        <div className="wrap flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <img
-              src="/logo-badge.png"
-              alt="Distaura"
-              className="size-9 rounded-full object-contain drop-shadow-[0_0_10px_rgba(184,224,44,0.4)]"
-            />
-            <span className="logo !text-xl font-bold">{site.name}</span>
-          </div>
-          <span>{site.tagline}</span>
-        </div>
-      </footer>
-
-      <Toaster
-        theme="dark"
-        position="top-center"
-        toastOptions={{
-          style: {
-            background: "var(--card)",
-            color: "var(--text)",
-            border: "1px solid rgba(255,255,255,0.08)",
-            boxShadow: "var(--raise)",
-          },
-        }}
-      />
-    </div>
+    </>
   );
 }

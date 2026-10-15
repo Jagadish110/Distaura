@@ -1,19 +1,25 @@
+'use client';
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Mark } from "@/components/site/mark";
 import { ButtonLink } from "@/components/site/button";
 import { cn } from "@/lib/utils";
 
+import Link from "next/link";
+import { useAuth } from "@/lib/auth/auth-provider";
+
 const links = [
-  { href: "#route", label: "The route" },
-  { href: "#suppliers", label: "For suppliers" },
-  { href: "#businesses", label: "For businesses" },
-  { href: "#how", label: "How it works" },
+  { href: "/products", label: "Catalogue" },
+  { href: "/partner", label: "For Suppliers" },
+  { href: "/find-a-solution", label: "For Businesses" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export function NavBar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { user } = useAuth();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -39,26 +45,43 @@ export function NavBar() {
       )}
     >
       <div className="wrap flex h-nav items-center justify-between">
-        <a href="#top" className="flex items-center gap-3.5 no-underline group py-1">
+        <Link href="/" className="flex items-center gap-3.5 no-underline group py-1">
           <Mark className="size-11 sm:size-12 md:size-13 drop-shadow-[0_0_16px_rgba(184,224,44,0.45)]" />
           <span className="logo !text-2xl sm:!text-[1.75rem] font-bold tracking-wider">
             DISTAURA
           </span>
-        </a>
+        </Link>
 
-        <nav className="hidden items-center gap-8 text-sm text-[var(--muted)] md:flex">
+        <nav className="hidden items-center gap-7 text-sm text-[var(--muted)] md:flex">
           {links.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="no-underline font-medium transition-colors duration-150 hover:text-[var(--text)]"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
-          <ButtonLink href="#contact" size="sm">
-            Contact us
-          </ButtonLink>
+
+          <div className="flex items-center gap-3 ml-2 border-l border-white/10 pl-5">
+            {user ? (
+              <ButtonLink href="/portal/dashboard" size="sm">
+                Portal
+              </ButtonLink>
+            ) : (
+              <>
+                <Link
+                  href="/sign-in"
+                  className="text-xs font-semibold text-stone-300 hover:text-stone-100 no-underline"
+                >
+                  Sign In
+                </Link>
+                <ButtonLink href="/sign-up" size="sm">
+                  Sign Up
+                </ButtonLink>
+              </>
+            )}
+          </div>
         </nav>
 
         <button
@@ -80,22 +103,43 @@ export function NavBar() {
         >
           <nav className="wrap flex flex-col gap-2 py-5">
             {links.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 className="flex min-h-12 items-center font-display text-xl font-medium no-underline transition-colors hover:text-[var(--lime-hi)]"
                 onClick={() => setOpen(false)}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
-            <ButtonLink
-              href="#contact"
-              className="mt-3 w-full"
-              onClickCapture={() => setOpen(false)}
-            >
-              Contact us
-            </ButtonLink>
+            <div className="mt-4 flex flex-col gap-2 pt-2 border-t border-white/10">
+              {user ? (
+                <ButtonLink
+                  href="/portal/dashboard"
+                  className="w-full text-center"
+                  onClickCapture={() => setOpen(false)}
+                >
+                  Go to Customer Portal
+                </ButtonLink>
+              ) : (
+                <>
+                  <ButtonLink
+                    href="/sign-up"
+                    className="w-full text-center"
+                    onClickCapture={() => setOpen(false)}
+                  >
+                    Create Account
+                  </ButtonLink>
+                  <Link
+                    href="/sign-in"
+                    className="flex min-h-11 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-sm font-medium text-stone-200 no-underline"
+                    onClick={() => setOpen(false)}
+                  >
+                    Sign In
+                  </Link>
+                </>
+              )}
+            </div>
           </nav>
         </div>
       ) : null}
