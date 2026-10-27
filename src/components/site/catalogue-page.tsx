@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { Search, ArrowRight, ShieldCheck, Sparkles, Building2, Layers } from 'lucide-react';
 import type { PublicProduct } from '@/lib/supabase/types';
+import { offerings } from '@/lib/offerings';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -109,20 +110,20 @@ export function CataloguePage({ rows, categories }: Props) {
         <div className="max-w-3xl">
           <div className="inline-flex items-center gap-2 rounded-full border border-[var(--lime)]/30 bg-[var(--lime)]/10 px-3.5 py-1 text-xs font-semibold text-[var(--lime-hi)] backdrop-blur-sm">
             <Sparkles className="size-3.5" />
-            Verified Enterprise Software Marketplace
+            Software &amp; Services Catalogue
           </div>
           <h1 className="mt-4 font-display text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-stone-100">
-            Enterprise software. <br />
-            <span className="text-[var(--lime-hi)]">Distributed with confidence.</span>
+            Solutions for your business, <br />
+            <span className="text-[var(--lime-hi)]">quoted to your requirement.</span>
           </h1>
           <p className="mt-4 text-base sm:text-lg text-[var(--muted)] leading-relaxed">
-            Browse verified enterprise software suites, GST-compliant accounting, cloud ERPs, and
-            security tooling with guaranteed SLAs, transparent INR pricing, and dedicated Indian
-            deployment support.
+            Browse the solutions we distribute in partnership with our suppliers. Every listing can
+            be enquired about directly, and pricing is confirmed in a written quotation.
           </p>
         </div>
 
         {/* Search & Filter Toolbar */}
+        {products.length > 0 && (
         <div className="mt-10 rounded-2xl border border-white/10 bg-[#212320]/80 p-4 shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-xl">
           <div className="flex flex-col gap-4 md:flex-row md:items-center">
             {/* Search */}
@@ -184,25 +185,92 @@ export function CataloguePage({ rows, categories }: Props) {
             ))}
           </div>
         </div>
+        )}
       </section>
 
       {/* Catalogue Grid */}
       <section className="wrap mt-10">
+        {products.length > 0 && (
         <div className="flex items-center justify-between border-b border-white/5 pb-4">
           <p className="text-sm text-[var(--muted)]">
-            Showing <span className="font-semibold text-stone-200">{filtered.length}</span> verified
-            software solutions
+            Showing <span className="font-semibold text-stone-200">{filtered.length}</span>{' '}
+            {filtered.length === 1 ? 'solution' : 'solutions'}
           </p>
           <Link
             href="/find-a-solution"
             className="text-xs font-medium text-[var(--lime-hi)] hover:underline flex items-center gap-1"
           >
-            Looking for something specific? Request a tailored stack{' '}
+            Looking for something specific? Request a quote{' '}
             <ArrowRight className="size-3" />
           </Link>
         </div>
+        )}
 
-        {filtered.length === 0 ? (
+        {offerings.length > 0 && (
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {offerings.map((o) => (
+              <div
+                key={o.slug}
+                className="flex flex-col justify-between rounded-2xl border border-white/10 bg-[#1e201d] p-6"
+              >
+                <div>
+                  <span className="flex items-center gap-1 text-xs text-[var(--muted)]">
+                    <Building2 className="size-3" /> {o.supplier}
+                  </span>
+                  <h3 className="mt-3 font-display text-xl font-bold text-stone-100">{o.name}</h3>
+                  <p className="mt-2 text-xs leading-relaxed text-[var(--muted)]">{o.summary}</p>
+                  <p className="mt-3 text-xs text-stone-300">
+                    <span className="font-semibold">Best for:</span> {o.targetCustomers}
+                  </p>
+                  <ul className="mt-3 space-y-2 border-t border-white/5 pt-3">
+                    {o.benefits.map((b) => (
+                      <li key={b} className="flex items-start gap-2 text-xs text-stone-300">
+                        <ShieldCheck className="size-3.5 shrink-0 text-[var(--lime)] mt-0.5" />
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="mt-6 border-t border-white/10 pt-4">
+                  <p className="text-sm font-semibold text-stone-100">{o.priceNote ?? 'Price on request'}</p>
+                  <Link
+                    href={`/find-a-solution?product=${encodeURIComponent(o.name)}`}
+                    className="mt-3 block rounded-xl bg-[var(--lime)] py-2.5 text-center text-xs font-semibold text-stone-950 no-underline hover:bg-[var(--lime-hi)]"
+                  >
+                    Request a Quote
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {products.length === 0 && offerings.length === 0 ? (
+          <div className="my-16 rounded-2xl border border-[var(--lime)]/20 bg-[#1c1d1a] p-10 text-center sm:p-14">
+            <Layers className="mx-auto size-12 text-[var(--lime)]" />
+            <h3 className="mt-4 font-display text-2xl font-semibold text-stone-100">
+              Our catalogue is being finalised
+            </h3>
+            <p className="mx-auto mt-2 max-w-xl text-sm leading-relaxed text-[var(--muted)]">
+              We are confirming the solutions we offer with our supplier partners. Tell us what your
+              business needs and we will let you know what we can provide, with a written quote.
+            </p>
+            <div className="mt-6 flex flex-wrap justify-center gap-3">
+              <Link
+                href="/find-a-solution"
+                className="rounded-xl bg-[var(--lime)] px-5 py-3 text-xs font-bold text-stone-950 no-underline hover:bg-[var(--lime-hi)]"
+              >
+                Request a Quote
+              </Link>
+              <Link
+                href="/contact"
+                className="rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-xs font-medium text-stone-200 no-underline hover:bg-white/10"
+              >
+                Contact us
+              </Link>
+            </div>
+          </div>
+        ) : products.length === 0 ? null : filtered.length === 0 ? (
           <div className="my-16 rounded-2xl border border-white/10 bg-[#1c1d1a] p-12 text-center">
             <Layers className="mx-auto size-12 text-stone-500" />
             <h3 className="mt-4 font-display text-lg font-semibold text-stone-200">
@@ -268,7 +336,7 @@ export function CataloguePage({ rows, categories }: Props) {
                     <div className="flex items-baseline justify-between">
                       <div>
                         <span className="text-[10px] uppercase tracking-wider text-[var(--muted)]">
-                          Starting from
+                          Approved list price
                         </span>
                         <div className="flex items-baseline gap-1">
                           <span className="font-display text-2xl font-bold text-stone-100">
@@ -285,14 +353,14 @@ export function CataloguePage({ rows, categories }: Props) {
                         href={`/products/${product.slug}`}
                         className="flex-1 rounded-xl bg-[var(--lime)] py-2.5 text-center text-xs font-semibold text-stone-950 transition-all hover:bg-[var(--lime-hi)] hover:shadow-[0_0_15px_rgba(184,224,44,0.4)]"
                       >
-                        View Plans &amp; Details
+                        View Details
                       </Link>
                       <Link
                         href={`/find-a-solution?product=${encodeURIComponent(product.name)}`}
                         className="rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-center text-xs font-medium text-stone-300 transition-colors hover:bg-white/10"
-                        title="Request Enterprise Quote"
+                        title="Request a Quote"
                       >
-                        Quote
+                        Request a Quote
                       </Link>
                     </div>
                   </div>
@@ -311,24 +379,24 @@ export function CataloguePage({ rows, categories }: Props) {
               Procurement Desk
             </span>
             <h2 className="mt-4 font-display text-2xl sm:text-3xl font-bold text-stone-100">
-              Need custom vendor agreements, PO invoicing, or multi-seat procurement?
+              Need something specific, or a quote for your team?
             </h2>
             <p className="mt-3 text-sm text-[var(--muted)] leading-relaxed">
-              Distaura acts as your single vendor of record. We handle supplier agreements, SLA
-              guarantees, consolidated monthly GST invoices, and vendor payouts under one roof.
+              Tell us your requirement and budget range. We will confirm scope and terms with the
+              supplier and come back with a written quotation.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
                 href="/find-a-solution"
                 className="rounded-xl bg-[var(--lime)] px-5 py-3 text-xs font-bold text-stone-950 transition-transform active:scale-95 hover:bg-[var(--lime-hi)]"
               >
-                Request Enterprise Quote
+                Request a Quote
               </Link>
               <Link
                 href="/contact"
                 className="rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-xs font-medium text-stone-200 hover:bg-white/10"
               >
-                Talk to Sales Desk
+                Contact us
               </Link>
             </div>
           </div>

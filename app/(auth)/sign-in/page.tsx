@@ -5,7 +5,7 @@ import { ShieldCheck, CheckCircle2, Building2, Zap, ArrowRight, Lock } from 'luc
 
 export const metadata: Metadata = {
   title: 'Sign In | Distaura Customer Portal',
-  description: 'Access your enterprise software subscriptions, license keys, and GST tax invoices.',
+  description: 'Sign in to your Distaura customer account.',
 };
 
 export default function SignInPage() {
@@ -20,28 +20,28 @@ export default function SignInPage() {
           </span>
 
           <h2 className="mt-5 font-display text-4xl font-extrabold tracking-tight text-stone-100 leading-tight">
-            Manage your corporate software stack <br />
-            <span className="text-[var(--lime-hi)]">under one unified roof.</span>
+            Your Distaura account, <br />
+            <span className="text-[var(--lime-hi)]">in one place.</span>
           </h2>
 
           <p className="mt-4 text-sm text-[var(--muted)] leading-relaxed">
-            Sign in to access your procured enterprise licenses, download statutory GST tax invoices with input tax credit (ITC) validity, track software renewal countdowns, and manage team seats.
+            Sign in to view your quotes, orders and renewals, and to manage your team.
           </p>
 
           <div className="mt-8 space-y-4">
             <div className="flex items-start gap-3 rounded-2xl border border-white/5 bg-[#1a1b18]/60 p-4 backdrop-blur-md">
               <CheckCircle2 className="size-4 shrink-0 text-[var(--lime)] mt-0.5" />
               <div>
-                <h4 className="text-xs font-semibold text-stone-200">100% Statutory GST e-Invoicing</h4>
-                <p className="mt-0.5 text-[11px] text-[var(--muted)]">Automatic HSN/SAC classification for seamless Input Tax Credit.</p>
+                <h4 className="text-xs font-semibold text-stone-200">Invoices and documents</h4>
+                <p className="mt-0.5 text-[11px] text-[var(--muted)]">Find your invoices and documents in one place.</p>
               </div>
             </div>
 
             <div className="flex items-start gap-3 rounded-2xl border border-white/5 bg-[#1a1b18]/60 p-4 backdrop-blur-md">
               <Zap className="size-4 shrink-0 text-[var(--lime)] mt-0.5" />
               <div>
-                <h4 className="text-xs font-semibold text-stone-200">Instant License Credential Vault</h4>
-                <p className="mt-0.5 text-[11px] text-[var(--muted)]">Direct access to tenant keys, activation files, and SLA contacts.</p>
+                <h4 className="text-xs font-semibold text-stone-200">Your orders</h4>
+                <p className="mt-0.5 text-[11px] text-[var(--muted)]">Track your orders and renewals.</p>
               </div>
             </div>
 

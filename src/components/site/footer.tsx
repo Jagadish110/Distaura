@@ -4,9 +4,9 @@ import { site } from '@/lib/site';
 import { ArrowUpRight } from 'lucide-react';
 
 const product = [
-  { label: 'Browse Catalogue', href: '/products' },
-  { label: 'Find a Solution', href: '/find-a-solution' },
-  { label: 'Pricing', href: '/pricing' },
+  { label: 'Explore Solutions', href: '/products' },
+  { label: 'Request a Quote', href: '/find-a-solution' },
+  { label: 'Pricing & Quotes', href: '/pricing' },
 ];
 
 const company = [
@@ -54,14 +54,14 @@ export function SiteFooter() {
             {/* Live status */}
             <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[11px]">
               <span className="dot-live" />
-              <span>Onboarding partners across India</span>
+              <span>Serving businesses across India</span>
             </div>
           </div>
 
           {/* Product */}
           <div className="md:col-span-2">
             <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-[var(--text)]">
-              Product
+              Solutions
             </p>
             <nav className="flex flex-col gap-2.5">
               {product.map((l) => (
@@ -129,8 +129,6 @@ export function SiteFooter() {
           <div className="flex items-center gap-1 text-stone-600">
             <span>Distributed from</span>
             <span className="text-[var(--muted)]">{site.basedIn}</span>
-            <span>·</span>
-            <span>GST-compliant B2B marketplace</span>
           </div>
         </div>
       </div>

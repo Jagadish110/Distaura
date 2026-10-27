@@ -5,7 +5,7 @@ import { Building2, ShieldCheck, CheckCircle2, FileText, ArrowRight, Zap } from 
 
 export const metadata: Metadata = {
   title: 'Create Account | Distaura Customer Portal',
-  description: 'Register your company on Distaura to procure enterprise software with statutory GST tax invoices.',
+  description: 'Create a Distaura customer account to track your quotes and enquiries.',
 };
 
 export default function SignUpPage() {
@@ -20,36 +20,36 @@ export default function SignUpPage() {
           </span>
 
           <h2 className="mt-5 font-display text-3xl sm:text-4xl font-extrabold tracking-tight text-stone-100 leading-tight">
-            Empower your company <br />
-            <span className="text-[var(--lime-hi)]">with unified software procurement.</span>
+            Create your customer account <br />
+            <span className="text-[var(--lime-hi)]">to follow your quotes.</span>
           </h2>
 
           <p className="mt-4 text-xs sm:text-sm text-[var(--muted)] leading-relaxed">
-            Create your enterprise account in 60 seconds. Immediately browse verified software suites, negotiate multi-seat volume tariffs, and receive official GST e-invoices with full Input Tax Credit eligibility.
+            Create an account for your company to browse our solutions and keep track of your quotation requests.
           </p>
 
           <div className="mt-8 space-y-4">
             <div className="flex items-start gap-3 rounded-2xl border border-white/5 bg-[#1a1b18]/60 p-4 backdrop-blur-md">
               <ShieldCheck className="size-4 shrink-0 text-[var(--lime)] mt-0.5" />
               <div>
-                <h4 className="text-xs font-semibold text-stone-200">Zero Legal or Empanelment Overhead</h4>
-                <p className="mt-0.5 text-[11px] text-[var(--muted)]">One Master Service Agreement covers every software OEM on the exchange.</p>
+                <h4 className="text-xs font-semibold text-stone-200">One point of contact</h4>
+                <p className="mt-0.5 text-[11px] text-[var(--muted)]">We coordinate with the supplier on your behalf.</p>
               </div>
             </div>
 
             <div className="flex items-start gap-3 rounded-2xl border border-white/5 bg-[#1a1b18]/60 p-4 backdrop-blur-md">
               <FileText className="size-4 shrink-0 text-[var(--lime)] mt-0.5" />
               <div>
-                <h4 className="text-xs font-semibold text-stone-200">Full Statutory Compliance</h4>
-                <p className="mt-0.5 text-[11px] text-[var(--muted)]">Official tax invoices generated instantly upon license confirmation.</p>
+                <h4 className="text-xs font-semibold text-stone-200">Written quotes</h4>
+                <p className="mt-0.5 text-[11px] text-[var(--muted)]">Scope, price and terms are confirmed in writing.</p>
               </div>
             </div>
 
             <div className="flex items-start gap-3 rounded-2xl border border-white/5 bg-[#1a1b18]/60 p-4 backdrop-blur-md">
               <Zap className="size-4 shrink-0 text-[var(--lime)] mt-0.5" />
               <div>
-                <h4 className="text-xs font-semibold text-stone-200">Guaranteed Escrow Delivery</h4>
-                <p className="mt-0.5 text-[11px] text-[var(--muted)]">License keys and tenant activations backed by Distaura escrow protection.</p>
+                <h4 className="text-xs font-semibold text-stone-200">Supplier delivery</h4>
+                <p className="mt-0.5 text-[11px] text-[var(--muted)]">Delivery and support come directly from the supplier.</p>
               </div>
             </div>
           </div>
@@ -61,7 +61,7 @@ export default function SignUpPage() {
             href="/partner"
             className="font-medium text-[var(--lime-hi)] hover:underline no-underline"
           >
-            Apply as OEM Supplier →
+            Apply as a supplier →
           </Link>
         </div>
       </div>

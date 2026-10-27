@@ -19,8 +19,9 @@ function SolutionForm() {
     companyName: '',
     email: '',
     phone: '',
+    budget: '',
     message: prefillProduct
-      ? `We are interested in procuring ${prefillProduct}. Please provide a formal quotation, implementation timeline, and multi-user licensing terms.`
+      ? `We are interested in procuring ${prefillProduct}. Please send us a quotation.`
       : '',
   });
 
@@ -28,7 +29,7 @@ function SolutionForm() {
     if (prefillProduct && !form.message) {
       setForm((prev) => ({
         ...prev,
-        message: `We are interested in procuring ${prefillProduct}. Please provide a formal quotation, implementation timeline, and multi-user licensing terms.`,
+        message: `We are interested in procuring ${prefillProduct}. Please send us a quotation.`,
       }));
     }
   }, [prefillProduct, form.message]);
@@ -56,6 +57,7 @@ function SolutionForm() {
           company_name: form.companyName,
           email: form.email,
           phone: form.phone,
+          budget: form.budget,
           message: form.message,
         }),
       });
@@ -79,29 +81,29 @@ function SolutionForm() {
       <div className="lg:col-span-7">
         <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--lime)]/30 bg-[var(--lime)]/10 px-3.5 py-1 text-xs font-semibold text-[var(--lime-hi)]">
           <Briefcase className="size-3.5" />
-          Enterprise Procurement Advisory
+          Request a Quote
         </span>
         <h1 className="mt-4 font-display text-4xl sm:text-5xl font-extrabold tracking-tight text-stone-100">
-          Find the right software stack <br />
-          <span className="text-[var(--lime-hi)]">for your business workflows.</span>
+          Tell us what you need. <br />
+          <span className="text-[var(--lime-hi)]">we will come back with a quote.</span>
         </h1>
         <p className="mt-4 text-base sm:text-lg leading-relaxed text-[var(--muted)]">
-          Whether you need to modernize your ERP, migrate to GST-compliant invoicing, automate field sales, or lock down corporate endpoints, our enterprise procurement specialists will curate and negotiate the optimal solution.
+          Describe your requirement and budget range. We will check what our supplier partners can provide and send you a written quotation.
         </p>
 
         <div className="mt-8 space-y-4">
           {[
             {
-              title: 'Independent Vendor Comparison',
-              desc: 'Unbiased recommendations tailored to your headcount, industry compliance, and existing tech stack.',
+              title: 'Matched to your requirement',
+              desc: 'We look at your team size, goals and existing setup before recommending anything.',
             },
             {
-              title: 'Consolidated Billing & GST Credit',
-              desc: 'Procure software from dozens of OEMs through one verified vendor of record with valid Tax Invoices.',
+              title: 'One point of contact',
+              desc: 'We coordinate with the supplier so you have a single team to speak to about your quote.',
             },
             {
-              title: 'Commercial Volume Discounts',
-              desc: 'Leverage Distaura’s distributor scale to obtain favorable multi-seat and annual licensing terms.',
+              title: 'Written, transparent quotes',
+              desc: 'Scope, price and terms are confirmed in writing before you commit to anything.',
             },
           ].map((item, i) => (
             <div key={i} className="flex items-start gap-3 rounded-2xl border border-white/5 bg-[#1b1c19] p-4">
@@ -121,7 +123,7 @@ function SolutionForm() {
             Tell Us What You Need
           </h2>
           <p className="mt-1 text-xs text-[var(--muted)]">
-            Our enterprise solution team will respond within 4 business hours with pricing options.
+            Share your requirement and we will get back to you with next steps.
           </p>
 
           <form onSubmit={handleSubmit} className="mt-6 space-y-4">
@@ -182,6 +184,24 @@ function SolutionForm() {
             </div>
 
             <div>
+              <label htmlFor="budget" className="block text-xs font-medium text-stone-300">
+                Budget range
+              </label>
+              <select
+                id="budget"
+                value={form.budget}
+                onChange={(e) => setForm({ ...form, budget: e.target.value })}
+                className="mt-1 w-full rounded-xl border border-white/10 bg-[#161715] px-3.5 py-2.5 text-xs text-stone-100 focus:border-[var(--lime)] focus:outline-none"
+              >
+                <option value="">Not sure yet</option>
+                <option value="Under ₹50,000">Under ₹50,000</option>
+                <option value="₹50,000 – ₹2,00,000">₹50,000 – ₹2,00,000</option>
+                <option value="₹2,00,000 – ₹10,00,000">₹2,00,000 – ₹10,00,000</option>
+                <option value="Above ₹10,00,000">Above ₹10,00,000</option>
+              </select>
+            </div>
+
+            <div>
               <label className="block text-xs font-medium text-stone-300">
                 Requirement Details <span className="text-[var(--lime)]">*</span>
               </label>
@@ -190,7 +210,7 @@ function SolutionForm() {
                 required
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
-                placeholder="What challenge are you solving? Mention desired software, number of users, or budget expectations..."
+                placeholder="What do you need? Mention the problem you are solving and the number of users."
                 className="mt-1 w-full rounded-xl border border-white/10 bg-[#161715] px-3.5 py-2.5 text-xs text-stone-100 placeholder:text-stone-500 focus:border-[var(--lime)] focus:outline-none"
               />
             </div>
@@ -200,7 +220,7 @@ function SolutionForm() {
               disabled={submitting}
               className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--lime)] py-3 text-xs font-bold text-stone-950 transition-all hover:bg-[var(--lime-hi)] hover:shadow-[0_0_20px_rgba(184,224,44,0.4)] disabled:opacity-50"
             >
-              {submitting ? 'Submitting Request...' : 'Request Solution Proposal'}
+              {submitting ? 'Submitting...' : 'Request a Quote'}
               <ArrowRight className="size-3.5" />
             </button>
           </form>
@@ -214,7 +234,7 @@ export default function FindASolutionPage() {
   return (
     <div className="pt-28 pb-20">
       <section className="wrap relative">
-        <Suspense fallback={<div className="text-center py-20 text-stone-400">Loading procurement desk...</div>}>
+        <Suspense fallback={<div className="text-center py-20 text-stone-400">Loading...</div>}>
           <SolutionForm />
         </Suspense>
       </section>

@@ -46,7 +46,7 @@ export default function ContactPage() {
         throw new Error(data.error || 'Failed to submit message.');
       }
 
-      toast.success('Your message has been dispatched to our desk.');
+      toast.success('Thanks, your message has been received.');
       router.push(`/enquiry-sent?type=${form.role}&ref=${encodeURIComponent(data.referenceId || '')}`);
     } catch (err: any) {
       toast.error(err.message || 'Something went wrong.');
@@ -63,13 +63,13 @@ export default function ContactPage() {
           <div className="lg:col-span-6">
             <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--lime)]/30 bg-[var(--lime)]/10 px-3.5 py-1 text-xs font-semibold text-[var(--lime-hi)]">
               <MessageSquare className="size-3.5" />
-              Direct Communication Desk
+              Contact us
             </span>
             <h1 className="mt-4 font-display text-4xl sm:text-5xl font-extrabold tracking-tight text-stone-100">
-              Speak with our distribution desk.
+              Talk to the Distaura team.
             </h1>
             <p className="mt-4 text-base leading-relaxed text-[var(--muted)]">
-              Whether you are an enterprise looking for multi-seat licensing, an OEM seeking distribution, or an existing customer needing commercial assistance, our team is on standby.
+              Whether you need a solution for your business or want to talk about distributing your product in India, send us a message and we will get back to you.
             </p>
 
             <div className="mt-8 space-y-4">
@@ -79,8 +79,8 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h4 className="text-xs font-semibold uppercase tracking-wider text-stone-300">Email Inquiries</h4>
-                  <p className="mt-1 text-sm font-medium text-stone-100">{site.emails.hello}</p>
-                  <p className="text-xs text-[var(--muted)]">Partnership queries: {site.emails.partners}</p>
+                  <a href={`mailto:${site.emails.hello}`} className="mt-1 block text-sm font-medium text-stone-100 no-underline hover:text-[var(--lime-hi)]">{site.emails.hello}</a>
+                  <a href={`mailto:${site.emails.partners}`} className="block text-xs text-[var(--muted)] no-underline hover:text-[var(--lime-hi)]">Partnership queries: {site.emails.partners}</a>
                 </div>
               </div>
 
@@ -89,9 +89,8 @@ export default function ContactPage() {
                   <Phone className="size-5" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-semibold uppercase tracking-wider text-stone-300">Desk Telephone</h4>
-                  <p className="mt-1 text-sm font-medium text-stone-100">+91 80 4567 8900</p>
-                  <p className="text-xs text-[var(--muted)]">Monday through Friday, 9:00 AM – 6:30 PM IST</p>
+                  <h4 className="text-xs font-semibold uppercase tracking-wider text-stone-300">Phone</h4>
+                  <a href={site.phoneHref} className="mt-1 block text-sm font-medium text-stone-100 no-underline hover:text-[var(--lime-hi)]">{site.phone}</a>
                 </div>
               </div>
 
@@ -100,13 +99,9 @@ export default function ContactPage() {
                   <MapPin className="size-5" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-semibold uppercase tracking-wider text-stone-300">Corporate Office</h4>
-                  <p className="mt-1 text-sm font-medium text-stone-100">
-                    Distaura Distribution Technologies Pvt Ltd
-                  </p>
-                  <p className="text-xs text-[var(--muted)]">
-                    Level 5, Tower B, Outer Ring Road, Bellandur, Bengaluru, Karnataka 560103
-                  </p>
+                  <h4 className="text-xs font-semibold uppercase tracking-wider text-stone-300">Based in</h4>
+                  <p className="mt-1 text-sm font-medium text-stone-100">{site.name}, {site.basedIn}</p>
+                  <p className="text-xs text-[var(--muted)]">Serving businesses across India</p>
                 </div>
               </div>
             </div>
@@ -119,7 +114,7 @@ export default function ContactPage() {
                 Send Us a Direct Message
               </h2>
               <p className="mt-1 text-xs text-[var(--muted)]">
-                Fill in the details below and we will route your inquiry to the relevant department immediately.
+                Fill in the details below and we will get back to you.
               </p>
 
               <form onSubmit={handleSubmit} className="mt-6 space-y-4">
@@ -174,9 +169,8 @@ export default function ContactPage() {
                     onChange={(e) => setForm({ ...form, role: e.target.value })}
                     className="mt-1 w-full rounded-xl border border-white/10 bg-[#161715] px-3.5 py-2.5 text-xs text-stone-100 focus:border-[var(--lime)] focus:outline-none"
                   >
-                    <option value="business">Business seeking software procurement</option>
-                    <option value="supplier">Software supplier / OEM wanting distribution</option>
-                    <option value="partner">Channel partner / Reseller</option>
+                    <option value="business">Business looking for a solution</option>
+                    <option value="supplier">Supplier wanting distribution in India</option>
                   </select>
                 </div>
 
@@ -189,7 +183,7 @@ export default function ContactPage() {
                     required
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
-                    placeholder="How can our distribution team help you today?"
+                    placeholder="How can we help?"
                     className="mt-1 w-full rounded-xl border border-white/10 bg-[#161715] px-3.5 py-2.5 text-xs text-stone-100 placeholder:text-stone-500 focus:border-[var(--lime)] focus:outline-none"
                   />
                 </div>
@@ -199,7 +193,7 @@ export default function ContactPage() {
                   disabled={submitting}
                   className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--lime)] py-3 text-xs font-bold text-stone-950 transition-all hover:bg-[var(--lime-hi)] hover:shadow-[0_0_20px_rgba(184,224,44,0.4)] disabled:opacity-50"
                 >
-                  {submitting ? 'Transmitting Note...' : 'Send Message'}
+                  {submitting ? 'Sending...' : 'Send Message'}
                   <Send className="size-3.5" />
                 </button>
               </form>

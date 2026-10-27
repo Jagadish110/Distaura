@@ -26,8 +26,8 @@ function EnquiryContent() {
 
       <p className="mt-3 text-sm sm:text-base leading-relaxed text-[var(--muted)]">
         {isSupplier
-          ? 'Thank you for choosing to distribute your software with Distaura. Our vendor evaluation desk has queued your application for review.'
-          : 'Thank you for reaching out to Distaura Enterprise Solutions. Our procurement team has received your inquiry and is compiling matching software options.'}
+          ? 'Thank you for your interest in distributing with Distaura. We have received your details and will review them.'
+          : 'Thank you for reaching out to Distaura. We have received your enquiry and will look at what we can offer for your requirement.'}
       </p>
 
       {/* SLA Details Card */}
@@ -39,22 +39,22 @@ function EnquiryContent() {
           <li className="flex items-start gap-3">
             <Clock className="size-4 shrink-0 text-[var(--lime)] mt-0.5" />
             <div>
-              <p className="font-semibold text-stone-200">Review within 4–24 business hours</p>
-              <p className="text-[var(--muted)]">Our specialist dedicated to your industry will analyze your submission.</p>
+              <p className="font-semibold text-stone-200">We will review your request</p>
+              <p className="text-[var(--muted)]">A member of our team will read your submission and follow up by email or phone.</p>
             </div>
           </li>
           <li className="flex items-start gap-3">
             <Mail className="size-4 shrink-0 text-[var(--lime)] mt-0.5" />
             <div>
-              <p className="font-semibold text-stone-200">Official commercial proposal</p>
-              <p className="text-[var(--muted)]">We will deliver a customized quotation or distributor terms sheet to your email.</p>
+              <p className="font-semibold text-stone-200">Written quotation or next steps</p>
+              <p className="text-[var(--muted)]">Where we can help, we will send a quotation or partnership details to your email.</p>
             </div>
           </li>
           <li className="flex items-start gap-3">
             <ShieldCheck className="size-4 shrink-0 text-[var(--lime)] mt-0.5" />
             <div>
-              <p className="font-semibold text-stone-200">Guaranteed Distaura governance</p>
-              <p className="text-[var(--muted)]">All licensing agreements are governed by strict SLAs and Indian commercial law.</p>
+              <p className="font-semibold text-stone-200">Terms agreed in writing</p>
+              <p className="text-[var(--muted)]">Price, scope and support commitments are confirmed in writing before you commit.</p>
             </div>
           </li>
         </ul>
@@ -67,7 +67,7 @@ function EnquiryContent() {
           className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-[var(--lime)] px-5 py-3 text-xs font-bold text-stone-950 transition-all hover:bg-[var(--lime-hi)] hover:shadow-[0_0_20px_rgba(184,224,44,0.3)]"
         >
           <Package className="size-4" />
-          Browse Software Catalogue
+          Explore Solutions
         </Link>
         <Link
           href="/"

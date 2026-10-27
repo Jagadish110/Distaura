@@ -45,7 +45,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
       {/* Subtle footer */}
       <footer className="relative z-10 py-6 text-center text-xs text-[var(--muted)] border-t border-white/5">
         <div className="wrap flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px]">
-          <span>© {new Date().getFullYear()} Distaura Technologies Pvt Ltd. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} Distaura. All rights reserved.</span>
           <div className="flex items-center gap-4">
             <Link href="/terms" className="hover:text-stone-300 no-underline">Terms</Link>
             <Link href="/privacy" className="hover:text-stone-300 no-underline">Privacy</Link>

@@ -35,9 +35,9 @@ async function getCategories() {
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export const metadata = {
-  title: 'Software Catalogue | Distaura',
+  title: 'Solutions Catalogue',
   description:
-    'Browse verified enterprise software suites with GST-compliant INR pricing and dedicated Indian deployment support.',
+    'Browse the software and services Distaura distributes in India and request a written quote for any listing.',
 };
 
 export default async function PublicCataloguePageServer() {

@@ -147,7 +147,7 @@ export default async function ProductDetailPage({
               )}
               <span className="flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2.5 py-0.5 text-xs text-stone-300">
                 <Building2 className="size-3 text-stone-400" />
-                Verified OEM: {product.supplier_name}
+                Supplier: {product.supplier_name}
               </span>
             </div>
 
@@ -163,7 +163,7 @@ export default async function ProductDetailPage({
             {product.features.length > 0 && (
               <div className="mt-8 rounded-2xl border border-white/10 bg-[#1c1d1a] p-6">
                 <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--lime-hi)]">
-                  Core Enterprise Capabilities
+                  Key Capabilities
                 </h2>
                 <div className="mt-4 grid gap-3 sm:grid-cols-2">
                   {product.features.map((feature, idx) => (
@@ -194,19 +194,19 @@ export default async function ProductDetailPage({
           <div className="lg:col-span-4">
             <div className="sticky top-28 rounded-2xl border border-[var(--lime)]/30 bg-[#212320]/90 p-6 shadow-[0_20px_40px_rgba(0,0,0,0.6)] backdrop-blur-xl">
               <span className="rounded-md border border-[var(--lime)]/30 bg-[var(--lime)]/10 px-2 py-0.5 text-[11px] font-semibold text-[var(--lime-hi)]">
-                Distaura Distribution Guarantee
+                Request a quote
               </span>
               <h3 className="mt-3 font-display text-xl font-bold text-stone-100">
-                Procure with Complete Safety
+                Get a written quotation
               </h3>
               <p className="mt-2 text-xs text-[var(--muted)] leading-relaxed">
-                Direct vendor licensing, GST tax invoice with full ITC credit eligibility, and local
-                implementation support.
+                Tell us your requirement and we will confirm scope, price and terms with the
+                supplier before you commit.
               </p>
 
               {product.plans.length > 0 && (
                 <div className="my-5 border-t border-white/10 pt-4">
-                  <div className="text-xs text-[var(--muted)]">Starting at</div>
+                  <div className="text-xs text-[var(--muted)]">Listed price</div>
                   <div className="mt-1 flex items-baseline gap-1.5">
                     <span className="font-display text-3xl font-extrabold text-stone-100">
                       ₹{lowestPriceRupees.toLocaleString('en-IN')}
@@ -218,28 +218,28 @@ export default async function ProductDetailPage({
 
               <div className="space-y-2.5">
                 <Link
-                  href={`/sign-up?product=${encodeURIComponent(product.slug)}`}
+                  href={`/find-a-solution?product=${encodeURIComponent(product.name)}`}
                   className="flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--lime)] py-3 text-xs font-bold text-stone-950 transition-all hover:bg-[var(--lime-hi)] hover:shadow-[0_0_20px_rgba(184,224,44,0.4)]"
                 >
-                  Create Account &amp; Procure
+                  Request a Quote
                   <ArrowRight className="size-3.5" />
                 </Link>
                 <Link
-                  href={`/find-a-solution?product=${encodeURIComponent(product.name)}`}
+                  href="/contact"
                   className="flex w-full items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 py-3 text-xs font-semibold text-stone-200 transition-colors hover:bg-white/10"
                 >
-                  Request Formal Quotation / PO
+                  Contact us
                 </Link>
               </div>
 
               <div className="mt-5 space-y-2 border-t border-white/5 pt-4 text-[11px] text-[var(--muted)]">
                 <div className="flex items-center gap-2">
                   <Lock className="size-3.5 text-[var(--lime)]" />
-                  <span>Official tax invoice on confirmation</span>
+                  <span>Terms confirmed in your written quote</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <ShieldCheck className="size-3.5 text-[var(--lime)]" />
-                  <span>Distaura escrow &amp; delivery warranty</span>
+                  <span>Delivery handled by the supplier</span>
                 </div>
               </div>
             </div>
@@ -258,7 +258,7 @@ export default async function ProductDetailPage({
               Available Licensing Plans
             </h2>
             <p className="mt-2 text-sm text-[var(--muted)]">
-              Choose the tier matching your team size or deployment scale.
+              Indicative tiers. Final scope and price are confirmed in your written quote.
             </p>
           </div>
 
@@ -313,14 +313,14 @@ export default async function ProductDetailPage({
 
                   <div className="mt-8 border-t border-white/5 pt-4">
                     <Link
-                      href={`/sign-up?product=${encodeURIComponent(product.slug)}&plan=${encodeURIComponent(plan.name)}`}
+                      href={`/find-a-solution?product=${encodeURIComponent(`${product.name} – ${plan.name}`)}`}
                       className={`w-full block py-2.5 rounded-xl text-center text-xs font-semibold transition-all ${
                         plan.recommended
                           ? 'bg-[var(--lime)] text-stone-950 hover:bg-[var(--lime-hi)]'
                           : 'border border-white/15 bg-white/5 text-stone-200 hover:bg-white/10'
                       }`}
                     >
-                      Select Plan
+                      Request a Quote
                     </Link>
                   </div>
                 </div>

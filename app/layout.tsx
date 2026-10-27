@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: '%s | Distaura',
   },
   description:
-    'Distaura is a B2B software distribution company connecting software suppliers with Indian businesses.',
+    'Distaura connects software and service suppliers with Indian businesses. Explore solutions and request a written quote.',
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? 'https://distaura.com'),
   openGraph: {
     type: 'website',
@@ -34,6 +34,10 @@ export const metadata: Metadata = {
     images: [{ url: '/og.jpg', width: 1200, height: 630 }],
   },
   twitter: { card: 'summary_large_image' },
+  icons: {
+    icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }, { url: '/favicon.png', type: 'image/png' }],
+    apple: '/icon-180.png',
+  },
   robots: { index: true, follow: true },
 };
 

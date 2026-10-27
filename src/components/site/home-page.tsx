@@ -11,35 +11,35 @@ const supplierPoints = [
   "Direct access to Indian businesses actively seeking solutions",
   "A dedicated sales and distribution partner for your offerings",
   "You retain delivery, client relationship, and quality control",
-  "Clear distributor terms and pricing agreed upfront",
+  "Clear distributor terms agreed in writing upfront",
 ];
 
 const businessPoints = [
   "Curated solutions matched to your exact business needs",
-  "One trusted partner for discovery, purchasing, and billing",
-  "Purchasing handled locally in India, invoiced in rupees",
-  "Direct delivery and onboarding backed by the supplier",
+  "One point of contact from enquiry to written quotation",
+  "Quotations in Indian rupees, confirmed in writing",
+  "Delivery and support provided by the supplier",
 ];
 
 const steps = [
   {
     number: "01",
     title: "Diagnose & match",
-    copy: "We consult with you to understand your specific challenges and match you with vetted products or specialized services.",
+    copy: "We consult with you to understand your specific challenges and match you with products or services from our supplier partners.",
     color: "from-[var(--lime)]/20 to-emerald-500/5",
     highlight: "var(--lime)",
   },
   {
     number: "02",
     title: "Transparent terms",
-    copy: "We agree distributor pricing with the supplier and handle localized rupee procurement with zero hassle.",
+    copy: "We confirm scope and pricing with the supplier and send you a written quotation in rupees.",
     color: "from-emerald-400/20 to-teal-500/5",
     highlight: "rgb(52 211 153)",
   },
   {
     number: "03",
     title: "Direct delivery",
-    copy: "The supplier fulfils the product or service directly, while Distaura stays by your side throughout onboarding.",
+    copy: "The supplier delivers the product or service, and Distaura stays in touch with you through onboarding.",
     color: "from-teal-400/20 to-cyan-500/5",
     highlight: "rgb(45 212 191)",
   },
@@ -59,12 +59,12 @@ const principles = [
   {
     icon: Shield,
     title: "Curated portfolio",
-    copy: "We work with a focused set of vetted products and services we can properly stand behind.",
+    copy: "We work with a focused set of products and services and only list what a supplier has confirmed.",
   },
   {
     icon: Globe2,
     title: "Clear agreements",
-    copy: "Pricing, support, and responsibilities are clearly defined with every partner.",
+    copy: "Pricing, support and responsibilities are agreed in writing with every partner.",
   },
 ];
 
@@ -121,18 +121,18 @@ export function HomePage() {
               </h1>
 
               <p className="mt-6 max-w-2xl font-sans text-lg leading-relaxed text-[var(--muted)] md:text-xl">
-                Distaura connects software and product suppliers with Indian businesses.
-                We handle customer acquisition and localized sales — the supplier delivers,
-                and the business gets a solution that fits.
+                Distaura connects software and service suppliers with Indian businesses.
+                Tell us what you need, and we will come back with a written quote from our
+                supplier partners, including {site.supplierPartner}.
               </p>
 
               <div className="mt-10 flex flex-wrap items-center gap-4">
-                <ButtonLink href="#suppliers">
-                  Become a partner
+                <ButtonLink href="/find-a-solution">
+                  Request a Quote
                   <ArrowUpRight className="size-4" />
                 </ButtonLink>
                 <ButtonLink href="/products" variant="alt">
-                  Browse catalogue
+                  Explore Solutions
                   <ArrowRight className="size-4" />
                 </ButtonLink>
               </div>
@@ -185,11 +185,11 @@ export function HomePage() {
                     For software suppliers
                   </div>
                   <h3 className="font-display text-2xl md:text-3xl text-[var(--lime-hi)]">
-                    Reach Indian businesses at scale
+                    Reach Indian businesses
                   </h3>
                   <p className="mt-3 text-[var(--muted)]">
-                    Reach more Indian businesses through our sales and distribution network,
-                    without building an expensive local team first.
+                    Reach Indian businesses through our distribution network, without
+                    building a local sales team first.
                   </p>
                   <ul className="split-list mt-4">
                     {supplierPoints.map((item) => (
@@ -201,9 +201,7 @@ export function HomePage() {
                   </ul>
                 </div>
                 <div className="pt-4">
-                  <ButtonLink
-                    href={`mailto:${site.emails.partners}?subject=${encodeURIComponent("Supplier partnership enquiry")}`}
-                  >
+                  <ButtonLink href="/partner">
                     Become a partner
                     <ArrowUpRight className="size-4" />
                   </ButtonLink>
@@ -217,11 +215,11 @@ export function HomePage() {
                     For businesses
                   </div>
                   <h3 className="font-display text-2xl md:text-3xl text-[var(--lime-hi)]">
-                    Discover & procure with confidence
+                    Find the right solution
                   </h3>
                   <p className="mt-3 text-[var(--muted)]">
-                    Discover and procure tailored products, tools, and services
-                    matched to your exact operational challenges.
+                    Describe your requirement and budget range, and we will
+                    match it to what our supplier partners can provide.
                   </p>
                   <ul className="split-list mt-4">
                     {businessPoints.map((item) => (
@@ -233,11 +231,8 @@ export function HomePage() {
                   </ul>
                 </div>
                 <div className="pt-4">
-                  <ButtonLink
-                    href={`mailto:${site.emails.hello}?subject=${encodeURIComponent("Business enquiry")}`}
-                    variant="alt"
-                  >
-                    Tell us what you need
+                  <ButtonLink href="/find-a-solution" variant="alt">
+                    Request a Quote
                     <ArrowUpRight className="size-4" />
                   </ButtonLink>
                 </div>
@@ -255,27 +250,27 @@ export function HomePage() {
                 <div className="relative max-w-2xl">
                   <div className="inline-flex items-center gap-2 rounded-full border border-[var(--lime)]/30 bg-[var(--lime)]/10 px-3 py-1 text-xs font-semibold text-[var(--lime-hi)] mb-5">
                     <Zap className="size-3" />
-                    Live Catalogue
+                    Solutions
                   </div>
                   <h2 className="font-display text-3xl sm:text-4xl font-bold text-stone-100">
-                    Browse verified enterprise software — priced in INR.
+                    Explore our solutions and request a quote.
                   </h2>
                   <p className="mt-4 text-[var(--muted)] text-sm leading-relaxed">
-                    GST-compliant accounting, cloud ERPs, CRMs, security tooling, and more.
-                    Every listing comes with transparent pricing and dedicated Indian deployment support.
+                    See the products and services we offer with our supplier partners.
+                    Every listing can be enquired about directly, and pricing is confirmed in a written quotation.
                   </p>
                   <div className="mt-7 flex flex-wrap gap-3">
                     <Link
                       href="/products"
                       className="inline-flex items-center gap-2 rounded-xl bg-[var(--lime)] px-5 py-3 text-sm font-bold text-stone-950 transition-all hover:bg-[var(--lime-hi)] hover:shadow-[0_0_25px_rgba(184,224,44,0.35)]"
                     >
-                      Browse Catalogue <ArrowRight className="size-4" />
+                      Explore Solutions <ArrowRight className="size-4" />
                     </Link>
                     <Link
                       href="/find-a-solution"
                       className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium text-stone-200 hover:bg-white/10"
                     >
-                      Request custom solution
+                      Request a Quote
                     </Link>
                   </div>
                 </div>
@@ -337,7 +332,7 @@ export function HomePage() {
             <Reveal>
               <p className="folio">05 / Stance</p>
               <h2 className="mt-4 max-w-2xl text-headline">
-                Built to be a serious distribution partner.
+                Built to be a dependable distribution partner.
               </h2>
             </Reveal>
 
@@ -394,7 +389,7 @@ export function HomePage() {
                   Direct channels
                 </h3>
                 <p className="mt-2 text-sm text-[var(--muted)]">
-                  Reach our distribution desks directly for immediate inquiries.
+                  Reach us directly by email or phone.
                 </p>
 
                 <div className="mt-8 space-y-6">
@@ -449,7 +444,7 @@ export function HomePage() {
                 <div className="flex items-center gap-3">
                   <div className="size-3 rounded-full bg-[var(--lime)] shadow-[0_0_8px_var(--lime)]" />
                   <span className="text-sm font-medium text-[var(--muted)]">
-                    Active partner onboarding across {site.cities.length}+ metro hubs
+                    Serving businesses across India
                   </span>
                 </div>
               </div>
