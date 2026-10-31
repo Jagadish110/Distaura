@@ -101,7 +101,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   const product = data as any;
   return {
-    title: product ? `${product.name} | Distaura` : 'Product | Distaura',
+    title: product ? product.name : 'Product',
     description: product?.short_desc ?? '',
   };
 }
@@ -163,7 +163,7 @@ export default async function ProductDetailPage({
             {product.features.length > 0 && (
               <div className="mt-8 rounded-2xl border border-white/10 bg-[#1c1d1a] p-6">
                 <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--lime-hi)]">
-                  Key Capabilities
+                  Key Details
                 </h2>
                 <div className="mt-4 grid gap-3 sm:grid-cols-2">
                   {product.features.map((feature, idx) => (

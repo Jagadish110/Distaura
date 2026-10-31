@@ -77,12 +77,19 @@ interface Props {
   categories: Category[];
 }
 
+const INDICATIVE_PREFIX = 'Indicative price:';
+
 export function CataloguePage({ rows, categories }: Props) {
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [planFilter, setPlanFilter] = useState('all');
 
   const products = useMemo(() => groupProducts(rows), [rows]);
+  const hasPlans = products.some((p) => p.plans.length > 0);
+  const usedCategories = useMemo(
+    () => categories.filter((c) => products.some((p) => p.category_slug === c.slug)),
+    [categories, products],
+  );
 
   const filtered = useMemo(() => {
     return products.filter((prod) => {
@@ -133,12 +140,13 @@ export function CataloguePage({ rows, categories }: Props) {
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search software by name, capability, or keyword..."
+                placeholder="Search solutions by name or keyword..."
                 className="w-full rounded-xl border border-white/10 bg-[#161715] py-3 pl-11 pr-4 text-sm text-stone-100 placeholder:text-stone-500 focus:border-[var(--lime)] focus:outline-none focus:ring-1 focus:ring-[var(--lime)]"
               />
             </div>
 
             {/* Billing model */}
+            {hasPlans && (
             <div className="flex items-center gap-2">
               <label htmlFor="plan-filter" className="text-xs text-[var(--muted)] whitespace-nowrap">
                 Billing:
@@ -156,6 +164,7 @@ export function CataloguePage({ rows, categories }: Props) {
                 <option value="one_time">One-time</option>
               </select>
             </div>
+            )}
           </div>
 
           {/* Category Chips */}
@@ -168,9 +177,9 @@ export function CataloguePage({ rows, categories }: Props) {
                   : 'border border-white/5 bg-[#171816] text-stone-400 hover:border-white/15 hover:text-stone-200'
               }`}
             >
-              All Software
+              All Solutions
             </button>
-            {categories.map((cat) => (
+            {usedCategories.map((cat) => (
               <button
                 key={cat.slug}
                 onClick={() => setSelectedCategory(cat.slug)}
@@ -295,6 +304,8 @@ export function CataloguePage({ rows, categories }: Props) {
             {filtered.map((product) => {
               const priceRupees =
                 product.lowestPricePaise === Infinity ? 0 : product.lowestPricePaise / 100;
+              const indicative = product.features.find((f) => f.startsWith(INDICATIVE_PREFIX));
+              const otherFeatures = product.features.filter((f) => f !== indicative);
               return (
                 <div
                   key={product.id}
@@ -322,7 +333,7 @@ export function CataloguePage({ rows, categories }: Props) {
 
                     {/* Features */}
                     <ul className="mt-4 space-y-2 border-t border-white/5 pt-3">
-                      {product.features.slice(0, 3).map((feat, i) => (
+                      {otherFeatures.slice(0, 3).map((feat, i) => (
                         <li key={i} className="flex items-start gap-2 text-xs text-stone-300">
                           <ShieldCheck className="size-3.5 shrink-0 text-[var(--lime)] mt-0.5" />
                           <span>{feat}</span>
@@ -333,20 +344,36 @@ export function CataloguePage({ rows, categories }: Props) {
 
                   {/* Pricing & CTA */}
                   <div className="mt-6 border-t border-white/10 pt-4">
-                    <div className="flex items-baseline justify-between">
+                    {product.plans.length > 0 ? (
+                      <div className="flex items-baseline justify-between">
+                        <div>
+                          <span className="text-[10px] uppercase tracking-wider text-[var(--muted)]">
+                            Approved list price
+                          </span>
+                          <div className="flex items-baseline gap-1">
+                            <span className="font-display text-2xl font-bold text-stone-100">
+                              ₹{priceRupees.toLocaleString('en-IN')}
+                            </span>
+                            <span className="text-xs text-[var(--muted)]">/ mo</span>
+                          </div>
+                        </div>
+                        <span className="text-[10px] text-stone-400">+ 18% GST</span>
+                      </div>
+                    ) : (
                       <div>
                         <span className="text-[10px] uppercase tracking-wider text-[var(--muted)]">
-                          Approved list price
+                          {indicative ? 'Indicative price' : 'Pricing'}
                         </span>
-                        <div className="flex items-baseline gap-1">
-                          <span className="font-display text-2xl font-bold text-stone-100">
-                            ₹{priceRupees.toLocaleString('en-IN')}
-                          </span>
-                          <span className="text-xs text-[var(--muted)]">/ mo</span>
-                        </div>
+                        <p className="font-display text-lg font-bold text-stone-100">
+                          {indicative
+                            ? indicative.slice(INDICATIVE_PREFIX.length).replace(/\s*\+ GST$/, '').trim()
+                            : 'Price on request'}
+                        </p>
+                        <span className="text-[10px] text-stone-400">
+                          {indicative ? 'Before GST · final price confirmed in your quote' : 'Confirmed in your quote'}
+                        </span>
                       </div>
-                      <span className="text-[10px] text-stone-400">+ 18% GST</span>
-                    </div>
+                    )}
 
                     <div className="mt-4 flex items-center gap-2">
                       <Link
