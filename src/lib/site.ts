@@ -11,6 +11,7 @@ export const site = {
   supplierPartner: "Acreo Tech",
   phone: "+91 81235 93336",
   phoneHref: "tel:+918123593336",
+  whatsapp: "918123593336",
   basedIn: "India",
   cities: [
     "Mumbai",
@@ -27,3 +28,9 @@ export const site = {
     "Chandigarh",
   ],
 } as const;
+
+/** WhatsApp chat link with Distaura, optionally pre-filled with a message. */
+export function whatsappLink(message?: string) {
+  const base = `https://wa.me/${site.whatsapp}`;
+  return message ? `${base}?text=${encodeURIComponent(message)}` : base;
+}

@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { createServerSupabaseClient } from '@/lib/supabase/server';
 import type { PublicProduct } from '@/lib/supabase/types';
+import { whatsappLink } from '@/lib/site';
 
 // ── Data layer ────────────────────────────────────────────────────────────────
 
@@ -194,14 +195,14 @@ export default async function ProductDetailPage({
           <div className="lg:col-span-4">
             <div className="sticky top-28 rounded-2xl border border-[var(--lime)]/30 bg-[#212320]/90 p-6 shadow-[0_20px_40px_rgba(0,0,0,0.6)] backdrop-blur-xl">
               <span className="rounded-md border border-[var(--lime)]/30 bg-[var(--lime)]/10 px-2 py-0.5 text-[11px] font-semibold text-[var(--lime-hi)]">
-                Request a quote
+                Talk to us
               </span>
               <h3 className="mt-3 font-display text-xl font-bold text-stone-100">
-                Get a written quotation
+                Chat with Distaura on WhatsApp
               </h3>
               <p className="mt-2 text-xs text-[var(--muted)] leading-relaxed">
-                Tell us your requirement and we will confirm scope, price and terms with the
-                supplier before you commit.
+                Message us with your requirement and we will help you with scope, price and next
+                steps.
               </p>
 
               {product.plans.length > 0 && (
@@ -217,19 +218,15 @@ export default async function ProductDetailPage({
               )}
 
               <div className="space-y-2.5">
-                <Link
-                  href={`/find-a-solution?product=${encodeURIComponent(product.name)}`}
-                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--lime)] py-3 text-xs font-bold text-stone-950 transition-all hover:bg-[var(--lime-hi)] hover:shadow-[0_0_20px_rgba(184,224,44,0.4)]"
+                <a
+                  href={whatsappLink(`Hi Distaura, I'm interested in ${product.name}.`)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--lime)] py-3 text-xs font-bold text-stone-950 no-underline transition-all hover:bg-[var(--lime-hi)] hover:shadow-[0_0_20px_rgba(184,224,44,0.4)]"
                 >
-                  Request a Quote
+                  Contact Distaura
                   <ArrowRight className="size-3.5" />
-                </Link>
-                <Link
-                  href="/contact"
-                  className="flex w-full items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 py-3 text-xs font-semibold text-stone-200 transition-colors hover:bg-white/10"
-                >
-                  Contact us
-                </Link>
+                </a>
               </div>
 
               <div className="mt-5 space-y-2 border-t border-white/5 pt-4 text-[11px] text-[var(--muted)]">
@@ -312,16 +309,18 @@ export default async function ProductDetailPage({
                   </div>
 
                   <div className="mt-8 border-t border-white/5 pt-4">
-                    <Link
-                      href={`/find-a-solution?product=${encodeURIComponent(`${product.name} – ${plan.name}`)}`}
+                    <a
+                      href={whatsappLink(`Hi Distaura, I'm interested in ${product.name} – ${plan.name}.`)}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className={`w-full block py-2.5 rounded-xl text-center text-xs font-semibold transition-all ${
                         plan.recommended
                           ? 'bg-[var(--lime)] text-stone-950 hover:bg-[var(--lime-hi)]'
                           : 'border border-white/15 bg-white/5 text-stone-200 hover:bg-white/10'
                       }`}
                     >
-                      Request a Quote
-                    </Link>
+                      Contact Distaura
+                    </a>
                   </div>
                 </div>
               );

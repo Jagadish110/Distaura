@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Search, ArrowRight, ShieldCheck, Sparkles, Building2, Layers } from 'lucide-react';
 import type { PublicProduct } from '@/lib/supabase/types';
 import { offerings } from '@/lib/offerings';
+import { whatsappLink } from '@/lib/site';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -242,12 +243,14 @@ export function CataloguePage({ rows, categories }: Props) {
                 </div>
                 <div className="mt-6 border-t border-white/10 pt-4">
                   <p className="text-sm font-semibold text-stone-100">{o.priceNote ?? 'Price on request'}</p>
-                  <Link
-                    href={`/find-a-solution?product=${encodeURIComponent(o.name)}`}
+                  <a
+                    href={whatsappLink(`Hi Distaura, I'm interested in ${o.name}.`)}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="mt-3 block rounded-xl bg-[var(--lime)] py-2.5 text-center text-xs font-semibold text-stone-950 no-underline hover:bg-[var(--lime-hi)]"
                   >
-                    Request a Quote
-                  </Link>
+                    Contact Distaura
+                  </a>
                 </div>
               </div>
             ))}
@@ -376,18 +379,19 @@ export function CataloguePage({ rows, categories }: Props) {
                     )}
 
                     <div className="mt-4 flex items-center gap-2">
+                      <a
+                        href={whatsappLink(`Hi Distaura, I'm interested in ${product.name}.`)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 rounded-xl bg-[var(--lime)] py-2.5 text-center text-xs font-semibold text-stone-950 no-underline transition-all hover:bg-[var(--lime-hi)] hover:shadow-[0_0_15px_rgba(184,224,44,0.4)]"
+                      >
+                        Contact Distaura
+                      </a>
                       <Link
                         href={`/products/${product.slug}`}
-                        className="flex-1 rounded-xl bg-[var(--lime)] py-2.5 text-center text-xs font-semibold text-stone-950 transition-all hover:bg-[var(--lime-hi)] hover:shadow-[0_0_15px_rgba(184,224,44,0.4)]"
+                        className="rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-center text-xs font-medium text-stone-300 transition-colors hover:bg-white/10"
                       >
                         View Details
-                      </Link>
-                      <Link
-                        href={`/find-a-solution?product=${encodeURIComponent(product.name)}`}
-                        className="rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-center text-xs font-medium text-stone-300 transition-colors hover:bg-white/10"
-                        title="Request a Quote"
-                      >
-                        Request a Quote
                       </Link>
                     </div>
                   </div>
