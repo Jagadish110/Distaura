@@ -6,7 +6,7 @@ import {
   LayoutDashboard, Package, ShoppingCart, FileText,
   HelpCircle, Settings, RefreshCcw, Bell, User, LogOut,
 } from 'lucide-react';
-import { Mark } from '@/components/site/mark';
+import { Mark, Wordmark } from '@/components/site/mark';
 import { useAuth } from '@/lib/auth/auth-provider';
 import { cn } from '@/lib/utils';
 
@@ -30,7 +30,7 @@ export function PortalSidebar() {
       {/* Logo */}
       <Link href="/" className="flex shrink-0 items-center gap-2.5 px-5 py-5 no-underline">
         <Mark className="size-8 drop-shadow-[0_0_10px_rgba(184,224,44,0.4)]" />
-        <span className="logo !text-lg font-bold">DISTAURA</span>
+        <Wordmark className="h-3" />
       </Link>
 
       {/* Nav */}

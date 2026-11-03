@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { Mark } from "@/components/site/mark";
+import { Mark, Wordmark } from "@/components/site/mark";
 import { ButtonLink } from "@/components/site/button";
 import { cn } from "@/lib/utils";
 
@@ -45,14 +45,12 @@ export function NavBar() {
       )}
     >
       <div className="wrap flex h-nav items-center justify-between">
-        <Link href="/" className="flex items-center gap-3.5 no-underline group py-1">
+        <Link href="/" className="flex shrink-0 items-center gap-3 no-underline group py-1">
           <Mark className="size-11 sm:size-12 md:size-13 drop-shadow-[0_0_16px_rgba(184,224,44,0.45)]" />
-          <span className="logo !text-2xl sm:!text-[1.75rem] font-bold tracking-wider">
-            DISTAURA
-          </span>
+          <Wordmark className="h-4 shrink-0 sm:h-5" />
         </Link>
 
-        <nav className="hidden items-center gap-7 text-sm text-[var(--muted)] md:flex">
+        <nav className="hidden items-center gap-5 whitespace-nowrap text-sm text-[var(--muted)] lg:flex xl:gap-7">
           {links.map((link) => (
             <Link
               key={link.href}
@@ -86,7 +84,7 @@ export function NavBar() {
 
         <button
           type="button"
-          className="flex size-11 items-center justify-center rounded-full border border-white/10 bg-[#252723] text-stone-200 shadow-[inset_2px_2px_4px_rgba(255,255,255,0.08),inset_-2px_-2px_4px_rgba(0,0,0,0.5)] transition-transform active:scale-95 md:hidden"
+          className="flex size-11 items-center justify-center rounded-full border border-white/10 bg-[#252723] text-stone-200 shadow-[inset_2px_2px_4px_rgba(255,255,255,0.08),inset_-2px_-2px_4px_rgba(0,0,0,0.5)] transition-transform active:scale-95 lg:hidden"
           aria-expanded={open}
           aria-controls="mobile-nav"
           onClick={() => setOpen((v) => !v)}
@@ -99,7 +97,7 @@ export function NavBar() {
       {open ? (
         <div
           id="mobile-nav"
-          className="border-t border-white/10 bg-[#1a1b19]/95 backdrop-blur-xl md:hidden"
+          className="border-t border-white/10 bg-[#1a1b19]/95 backdrop-blur-xl lg:hidden"
         >
           <nav className="wrap flex flex-col gap-2 py-5">
             {links.map((link) => (

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Mark } from '@/components/site/mark';
+import { Mark, Wordmark } from '@/components/site/mark';
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -14,9 +14,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
       <header className="relative z-10 wrap flex h-20 items-center justify-between">
         <Link href="/" className="flex items-center gap-3 no-underline group">
           <Mark className="size-10 drop-shadow-[0_0_16px_rgba(184,224,44,0.45)] transition-transform group-hover:scale-105" />
-          <span className="logo !text-2xl font-bold tracking-wider text-stone-100">
-            DISTAURA
-          </span>
+          <Wordmark className="h-4 sm:h-5" />
         </Link>
 
         <div className="flex items-center gap-4 text-xs">

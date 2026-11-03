@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Mark } from '@/components/site/mark';
+import { Mark, Wordmark } from '@/components/site/mark';
 import { site } from '@/lib/site';
 import { ArrowUpRight } from 'lucide-react';
 
@@ -31,7 +31,7 @@ export function SiteFooter() {
           <div className="md:col-span-4">
             <Link href="/" className="flex items-center gap-3 no-underline group">
               <Mark className="size-10 drop-shadow-[0_0_12px_rgba(184,224,44,0.4)] transition-transform group-hover:scale-105" />
-              <span className="logo !text-xl font-bold">{site.name.toUpperCase()}</span>
+              <Wordmark className="h-4" />
             </Link>
             <p className="mt-4 text-xs leading-relaxed max-w-xs">
               {site.description}

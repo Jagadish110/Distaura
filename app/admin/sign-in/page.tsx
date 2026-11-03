@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Suspense } from 'react';
 import Link from 'next/link';
 import { AdminSignInForm } from '@/components/admin/admin-sign-in-form';
-import { Mark } from '@/components/site/mark';
+import { Mark, Wordmark } from '@/components/site/mark';
 import { 
   ShieldCheck, Lock, KeyRound, Terminal, 
   ArrowLeft, CheckCircle2, ShieldAlert, Cpu 
@@ -29,9 +29,7 @@ export default function AdminSignInPage() {
         <Link href="/" className="flex items-center gap-3 no-underline group">
           <Mark className="size-10 drop-shadow-[0_0_20px_rgba(184,224,44,0.5)] transition-transform group-hover:scale-105" />
           <div>
-            <span className="logo !text-2xl font-bold tracking-wider text-stone-100 block">
-              DISTAURA
-            </span>
+            <Wordmark className="mb-1 h-4 sm:h-5" />
             <span className="text-[10px] font-mono tracking-widest text-[var(--lime-hi)] uppercase">
               Operations Control
             </span>

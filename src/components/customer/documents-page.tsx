@@ -293,7 +293,7 @@ export function DocumentsPage({ documents, companyName }: Props) {
               <div className="flex justify-between items-start">
                 <div>
                   <h4 className="font-display text-base font-extrabold text-stone-100">
-                    DISTAURA DISTRIBUTION PVT LTD
+                    DISTAURA
                   </h4>
                   <p className="text-[11px] text-[var(--muted)] mt-0.5">
                     Authorized Indian Software Distributor

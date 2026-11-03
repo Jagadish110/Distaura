@@ -6,7 +6,7 @@ import {
   LayoutDashboard, Truck, Package, ShoppingCart, DollarSign,
   FileText, HelpCircle, Settings, Users, ChevronLeft, ChevronRight, LogOut,
 } from 'lucide-react';
-import { Mark } from '@/components/site/mark';
+import { Mark, Wordmark } from '@/components/site/mark';
 import { useAuth } from '@/lib/auth/auth-provider';
 import { useAdminSidebarStore } from '@/lib/stores/ui-store';
 import { cn } from '@/lib/utils';
@@ -85,7 +85,7 @@ export function AdminSidebar() {
         )}
       >
         <Mark className="size-8 shrink-0 drop-shadow-[0_0_10px_rgba(184,224,44,0.4)]" />
-        {!collapsed && <span className="logo !text-base font-bold whitespace-nowrap">DISTAURA</span>}
+        {!collapsed && <Wordmark className="h-3" />}
       </Link>
 
       {/* Nav Groups */}

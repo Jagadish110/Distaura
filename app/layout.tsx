@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: { card: 'summary_large_image' },
   icons: {
-    icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }, { url: '/favicon.png', type: 'image/png' }],
+    icon: [{ url: '/favicon.png', type: 'image/png' }],
     apple: '/icon-180.png',
   },
   robots: { index: true, follow: true },
